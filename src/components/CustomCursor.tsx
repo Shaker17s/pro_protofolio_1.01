@@ -9,8 +9,8 @@ const CursorLens: React.FC = () => {
 
   const cursorVariants = {
     normal: {
-      width: 28,
-      height: 28,
+      width: 40,
+      height: 40,
       borderRadius: "50%",
       backgroundColor: "rgba(255, 255, 255, 0)",
       borderWidth: "1px",
@@ -18,21 +18,21 @@ const CursorLens: React.FC = () => {
       scale: 1,
     },
     textHover: {
-      width: 28,
-      height: 28,
+      width: 40,
+      height: 40,
       borderRadius: "50%",
-      backgroundColor: "rgba(0, 240, 255, 0.4)", // electric blue neon
+      backgroundColor: "rgba(0, 240, 255, 0.5)", // More vibrant neon
       borderWidth: "0px",
-      backdropFilter: "blur(4px)",
-      scale: 1.2,
+      backdropFilter: "blur(10px)",
+      scale: 1.3,
     },
     buttonHover: {
-      width: 120,
-      height: 40,
-      borderRadius: 12,
-      backgroundColor: "rgba(255, 255, 255, 0.1)",
+      width: 140,
+      height: 50,
+      borderRadius: 16,
+      backgroundColor: "rgba(255, 255, 255, 0.15)",
       borderWidth: "1px",
-      backdropFilter: "blur(8px)",
+      backdropFilter: "blur(12px)",
       scale: 1,
     }
   };
@@ -61,9 +61,9 @@ const CursorLens: React.FC = () => {
     };
 
     const render = () => {
-      // Faster lerp for lightning-fast trailing
-      followerX += (mouseX - followerX) * 0.15;
-      followerY += (mouseY - followerY) * 0.15;
+      // Ultra-fast and smooth trailing
+      followerX += (mouseX - followerX) * 0.25;
+      followerY += (mouseY - followerY) * 0.25;
       
       xSetFollower(followerX);
       ySetFollower(followerY);
@@ -85,9 +85,9 @@ const CursorLens: React.FC = () => {
           const centerY = rect.top + rect.height / 2;
           
           gsap.to(interactive, {
-            x: (mouseX - centerX) * 0.45,
-            y: (mouseY - centerY) * 0.45,
-            duration: 0.5,
+            x: (mouseX - centerX) * 0.6, // Stronger magnetic pull
+            y: (mouseY - centerY) * 0.6,
+            duration: 0.4,
             ease: "power3.out"
           });
         }

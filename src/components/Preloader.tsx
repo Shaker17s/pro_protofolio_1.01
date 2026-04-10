@@ -29,7 +29,7 @@ const Preloader: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
           initial={{ scale: 0.5, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 1 }}
-          className="text-6xl font-heading font-black text-accent-cyan"
+          className="text-6xl font-display font-black text-accent-cyan"
         >
           SHAKER ABDALLAH
         </motion.h1>

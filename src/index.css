@@ -11,7 +11,7 @@
 
   body {
     @apply bg-black text-white font-body cursor-none overflow-x-hidden;
-    background-color: #000000;
+    background: radial-gradient(ellipse at center, rgba(112, 0, 255, 0.05) 0%, rgba(0, 240, 255, 0.03) 50%, rgba(255, 0, 255, 0.02) 100%), #000000;
   }
 
   /* Immersive Grain */

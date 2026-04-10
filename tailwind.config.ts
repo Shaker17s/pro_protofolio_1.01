@@ -19,9 +19,10 @@ export default {
         }
       },
       fontFamily: {
-        heading: ['"Space Grotesk"', "sans-serif"],
+        heading: ['"Cinzel"', "serif"], // Luxurious serif for headings
         body: ['"Inter"', "sans-serif"],
         mono: ['"Fira Code"', "monospace"],
+        display: ['"Playfair Display"', "serif"], // Elegant display font
       },
       transitionTimingFunction: {
         'artifact': 'cubic-bezier(0.76, 0, 0.24, 1)',

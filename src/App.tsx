@@ -11,6 +11,7 @@ import CyberTerminal from './components/CyberTerminal';
 import GlobalFilters from './components/GlobalFilters';
 import NeuralNetwork from './components/NeuralNetwork';
 import Preloader from './components/Preloader';
+import FloatingShapes from './components/FloatingShapes';
 
 function App() {
   const [isTerminalMode, setIsTerminalMode] = useState(false);
@@ -32,6 +33,7 @@ function App() {
       <AnimatePresence>
         {isLoading && <Preloader onComplete={() => setIsLoading(false)} />}
       </AnimatePresence>
+      <FloatingShapes />
       <Navbar />
       <CursorLens />
       <ParticleMesh />

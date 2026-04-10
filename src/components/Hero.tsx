@@ -101,7 +101,7 @@ const Hero: React.FC = () => {
           ref={nameRef}
           onClick={handleNameClick}
           style={{ fontWeight }}
-          className={`text-7xl md:text-[11rem] text-artifact mb-6 cursor-none select-none cursor-text transition-all duration-300 ${glitchActive ? 'animate-glitch text-accent-cyan' : 'hover:text-accent-purple'}`}
+          className={`text-7xl md:text-[11rem] font-display mb-6 cursor-none select-none cursor-text transition-all duration-300 ${glitchActive ? 'animate-glitch text-accent-cyan' : 'hover:text-accent-purple'}`}
         >
           <span className="name-glitch-span">_</span>
         </motion.h1>
@@ -115,7 +115,7 @@ const Hero: React.FC = () => {
         </div>
 
         <div className="flex flex-wrap items-center justify-center gap-8">
-          <button className="magnetic glass-artifact px-12 py-6 text-xs font-heading font-black tracking-[0.4em] uppercase hover:bg-white hover:text-black transition-all duration-700 hover:scale-110">
+          <button className="magnetic magnetic-btn glass-artifact px-12 py-6 text-xs font-heading font-black tracking-[0.4em] uppercase hover:bg-white/10 hover:backdrop-blur-md transition-all duration-700 hover:scale-110">
             Analyze Artifacts
           </button>
           <button className="magnetic group flex items-center gap-4 text-[10px] font-mono tracking-[0.5em] uppercase text-white/40 hover:text-white transition-colors">

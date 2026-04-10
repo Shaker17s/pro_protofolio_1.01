@@ -28,7 +28,7 @@ const Navbar: React.FC = () => {
   }, []);
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-[1000] p-6 pointer-events-none">
+    <nav className="fixed top-0 left-0 w-full z-[1000] p-6 pointer-events-none glass-artifact backdrop-blur-xl bg-black/20 border-b border-white/10">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         {/* Brand/Logo */}
         <motion.div 
@@ -98,12 +98,17 @@ const Navbar: React.FC = () => {
 
       {/* Scroll Progress Bar */}
       <motion.div
-        className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-accent-purple to-accent-cyan"
+        className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-accent-purple via-accent-pink to-accent-cyan"
         style={{ width: `${scrollProgress}%` }}
         initial={{ width: 0 }}
         animate={{ width: `${scrollProgress}%` }}
         transition={{ duration: 0.1 }}
       />
+      {/* Decorative Elements */}
+      <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
+        <div className="absolute top-2 left-1/4 w-px h-4 bg-gradient-to-b from-accent-cyan to-transparent"></div>
+        <div className="absolute top-2 right-1/4 w-px h-4 bg-gradient-to-b from-accent-pink to-transparent"></div>
+      </div>
     </nav>
   );
 };
