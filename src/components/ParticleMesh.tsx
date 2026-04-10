@@ -40,7 +40,7 @@ const ParticleMesh: React.FC = () => {
       }
 
       update() {
-        this.z -= 0.5;
+        this.z -= 0.1; // Hypnotically slow ambient movement
         if (this.z <= 1) this.z = 2000;
 
         const factor = 1000 / this.z;

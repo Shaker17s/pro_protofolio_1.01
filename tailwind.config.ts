@@ -15,6 +15,7 @@ export default {
           glow: "#3a44ff",
           cyan: "#00F0FF", // Hyper-Cyan
           midnight: "#12122b",
+          pink: "#FF00FF", // Synthwave Pink
         }
       },
       fontFamily: {

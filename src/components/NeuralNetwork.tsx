@@ -32,7 +32,7 @@ const NeuralNetwork: React.FC = () => {
       
       for (let i = 0; i < 300; i++) {
         const angle = Math.random() * Math.PI * 2;
-        const speed = Math.random() * 12 + 4;
+        const speed = Math.random() * 6 + 1; // Slower ambient burst
         pulseParticles.push({
           x: centerX,
           y: centerY,

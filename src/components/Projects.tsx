@@ -49,7 +49,15 @@ const ProjectCard = ({ project, index, onSelect }: { project: typeof projects[0]
           layoutId={`project-image-${project.title}`}
           src={project.image}
           alt={project.title}
-          className="w-full h-full object-cover grayscale group-hover/img:grayscale-0 transition-all duration-1000 group-hover:scale-110"
+          className="w-full h-full object-cover grayscale group-hover/img:grayscale-0 transition-all duration-300 group-hover:scale-110"
+        />
+
+        {/* Cinematic Ripple Effect */}
+        <motion.div
+          className="absolute inset-0 bg-gradient-to-r from-accent-purple/0 via-accent-cyan/20 to-accent-pink/0 opacity-0 group-hover/img:opacity-100"
+          initial={{ scale: 0.8, opacity: 0 }}
+          whileHover={{ scale: 1.2, opacity: 1 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
         />
         
         {/* Analyze Indicator */}
@@ -108,7 +116,7 @@ const Projects: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
 
   return (
-    <section id="projects" className="relative py-40 px-6 overflow-hidden">
+    <section id="projects" className="relative py-20 px-6 overflow-hidden">
       {/* Atmosphere Decor */}
       <div className="absolute top-1/2 left-0 -translate-x-1/2 w-[1000px] h-[1000px] bg-accent-purple/5 rounded-full blur-[250px] -z-10" />
       

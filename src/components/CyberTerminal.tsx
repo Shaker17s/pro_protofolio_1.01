@@ -32,6 +32,10 @@ const CyberTerminal: React.FC<CyberTerminalProps> = ({ onClose }) => {
         '  - SUDO DIAGNOSTIC: INITIATE FULL CORE ANALYSIS',
         '  - SUDO EXECUTE --SKILLS: RUN COGNITIVE ANALYSIS',
         '  - BOOT PROJECT [NAME]: ACCESS DATA SLABS',
+        '  - MATRIX: ENTER THE MATRIX',
+        '  - HACK: INITIATE HACK SEQUENCE',
+        '  - WHOAMI: IDENTITY CONFIRMATION',
+        '  - FORTUNE: RANDOM WISDOM',
         '  - CLEAR: PURGE BUFFER',
         '  - EXIT: RETURN TO GRAPHICAL INTERFACE'
       );
@@ -59,6 +63,15 @@ const CyberTerminal: React.FC<CyberTerminalProps> = ({ onClose }) => {
       response.push('INITIALIZING DATA SLAB VIRTUALIZATION...', 'ERROR: ACCESS RESTRICTED TO HUD OVERLAY.');
     } else if (cmd === 'sudo execute --skills') {
       response.push('RUNNING COGNITIVE COMPUTE...', 'REACT: 99%', 'TYPESCRIPT: 98%', 'AI_PROMPTING: 100%', 'CREATIVITY: OVERFLOW');
+    } else if (cmd === 'matrix') {
+      response.push('ENTERING THE MATRIX...', '01010100 01001000 01000101 00100000 01001101 01000001 01010100 01010010 01001001 01011000', 'WELCOME TO THE REAL WORLD, NEO.');
+    } else if (cmd === 'hack') {
+      response.push('INITIATING HACK SEQUENCE...', 'BREACHING FIREWALL...', 'ACCESS GRANTED. YOU ARE NOW A GHOST IN THE MACHINE.');
+    } else if (cmd === 'whoami') {
+      response.push('IDENTITY CONFIRMED:', 'SHAKER ABDALLAH', 'AI PROMPT ENGINEER | SOFTWARE ARCHITECT | CREATIVE TECHNOLOGIST', 'STATUS: LEGENDARY');
+    } else if (cmd === 'fortune') {
+      const fortunes = ['The future belongs to those who believe in the beauty of their dreams.', 'Code is poetry in motion.', 'Innovation distinguishes between a leader and a follower.'];
+      response.push('FORTUNE COOKIE:', fortunes[Math.floor(Math.random() * fortunes.length)]);
     } else {
       response.push(`COMMAND NOT RECOGNIZED: ${cmd}`);
     }

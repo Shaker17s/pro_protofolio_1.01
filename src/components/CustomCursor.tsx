@@ -1,10 +1,41 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
+import { motion } from 'framer-motion';
 
 const CursorLens: React.FC = () => {
   const cursorRef = useRef<HTMLDivElement>(null);
   const followerRef = useRef<HTMLDivElement>(null);
-  const [isHovering, setIsHovering] = useState(false);
+  const [hoverType, setHoverType] = useState<'normal' | 'text' | 'button'>('normal');
+
+  const cursorVariants = {
+    normal: {
+      width: 28,
+      height: 28,
+      borderRadius: "50%",
+      backgroundColor: "rgba(255, 255, 255, 0)",
+      borderWidth: "1px",
+      backdropFilter: "blur(0px) hue-rotate(0deg)",
+      scale: 1,
+    },
+    textHover: {
+      width: 28,
+      height: 28,
+      borderRadius: "50%",
+      backgroundColor: "rgba(0, 240, 255, 0.4)", // electric blue neon
+      borderWidth: "0px",
+      backdropFilter: "blur(4px)",
+      scale: 1.2,
+    },
+    buttonHover: {
+      width: 120,
+      height: 40,
+      borderRadius: 12,
+      backgroundColor: "rgba(255, 255, 255, 0.1)",
+      borderWidth: "1px",
+      backdropFilter: "blur(8px)",
+      scale: 1,
+    }
+  };
 
   useEffect(() => {
     const cursor = cursorRef.current;
@@ -30,9 +61,9 @@ const CursorLens: React.FC = () => {
     };
 
     const render = () => {
-      // Advanced Lerp for ultra-smooth trailing
-      followerX += (mouseX - followerX) * 0.08;
-      followerY += (mouseY - followerY) * 0.08;
+      // Faster lerp for lightning-fast trailing
+      followerX += (mouseX - followerX) * 0.15;
+      followerY += (mouseY - followerY) * 0.15;
       
       xSetFollower(followerX);
       ySetFollower(followerY);
@@ -43,17 +74,10 @@ const CursorLens: React.FC = () => {
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       const interactive = target.closest('a, button, .magnetic, .glass-artifact, input, textarea, .hover-trigger');
+      const textElement = target.closest('p, span, h1, h2, h3, h4, h5, h6, .cursor-text');
       
       if (interactive) {
-        setIsHovering(true);
-        gsap.to(follower, {
-          scale: 3.5,
-          duration: 0.8,
-          ease: "expo.out",
-          backgroundColor: "rgba(255, 255, 255, 0.05)",
-          borderWidth: "0px",
-          backdropFilter: "blur(4px) hue-rotate(90deg)"
-        });
+        setHoverType('button');
         
         if (interactive.classList.contains('magnetic')) {
           const rect = interactive.getBoundingClientRect();
@@ -67,16 +91,10 @@ const CursorLens: React.FC = () => {
             ease: "power3.out"
           });
         }
+      } else if (textElement) {
+        setHoverType('text');
       } else {
-        setIsHovering(false);
-        gsap.to(follower, {
-          scale: 1,
-          duration: 0.8,
-          ease: "expo.out",
-          backgroundColor: "rgba(255, 255, 255, 0)",
-          borderWidth: "1px",
-          backdropFilter: "blur(0px) hue-rotate(0deg)"
-        });
+        setHoverType('normal');
       }
     };
 
@@ -112,12 +130,15 @@ const CursorLens: React.FC = () => {
         ref={cursorRef}
         className="fixed top-0 left-0 w-1 h-1 bg-accent-cyan rounded-full pointer-events-none z-[10000] -translate-x-1/2 -translate-y-1/2 mix-blend-difference"
       />
-      <div
+      <motion.div
         ref={followerRef}
-        className="fixed top-0 left-0 w-12 h-12 border border-white/20 rounded-full pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2 mix-blend-difference liquid-lens overflow-hidden"
+        className="fixed top-0 left-0 border border-white/20 rounded-full pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2 mix-blend-difference liquid-lens overflow-hidden"
+        variants={cursorVariants}
+        animate={hoverType}
+        transition={{ duration: 0.3, ease: "easeOut" }}
       >
         <div className="absolute inset-0 bg-gradient-to-br from-accent-purple/20 to-accent-cyan/20 opacity-0 group-hover:opacity-100 transition-opacity" />
-      </div>
+      </motion.div>
     </>
   );
 };

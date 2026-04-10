@@ -88,6 +88,27 @@ const Contact: React.FC = () => {
         </div>
       </div>
 
+      {/* Newsletter Signup */}
+      <div className="max-w-7xl mx-auto mt-20">
+        <div className="text-center mb-12">
+          <h3 className="text-2xl font-heading font-bold mb-4">Stay Connected</h3>
+          <p className="text-white/40 font-body">Receive updates on new projects and AI innovations</p>
+        </div>
+        <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+          <div className="relative group flex-1">
+            <input 
+              type="email" 
+              placeholder="Enter your email"
+              className="w-full bg-white/[0.03] border border-white/10 rounded-2xl px-6 py-4 outline-none focus:border-accent-cyan/50 focus:bg-white/[0.05] transition-all duration-500 font-body placeholder:text-white/20"
+            />
+            <div className="absolute inset-0 rounded-2xl bg-accent-cyan/5 blur-2xl opacity-0 group-focus-within:opacity-100 transition-opacity pointer-events-none" />
+          </div>
+          <button className="magnetic-btn px-8 py-4 glass-artifact hover:bg-accent-cyan hover:text-black transition-all duration-500">
+            Subscribe
+          </button>
+        </div>
+      </div>
+
       {/* Footer Decal */}
       <div className="max-w-7xl mx-auto border-t border-white/5 pt-12 text-center">
         <p className="text-[10px] font-mono tracking-[0.5em] text-white/20 uppercase">

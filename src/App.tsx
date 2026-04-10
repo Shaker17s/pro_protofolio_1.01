@@ -9,10 +9,12 @@ import Navbar from './components/Navbar';
 import ParticleMesh from './components/ParticleMesh';
 import CyberTerminal from './components/CyberTerminal';
 import GlobalFilters from './components/GlobalFilters';
-import NeuralNetwork from './components/NeuralNetwork'; // Upgraded Pulse Effect
+import NeuralNetwork from './components/NeuralNetwork';
+import Preloader from './components/Preloader';
 
 function App() {
   const [isTerminalMode, setIsTerminalMode] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -27,6 +29,9 @@ function App() {
   return (
     <main id="top" className="relative min-h-screen bg-black overflow-hidden selection:bg-accent-purple/30">
       <GlobalFilters />
+      <AnimatePresence>
+        {isLoading && <Preloader onComplete={() => setIsLoading(false)} />}
+      </AnimatePresence>
       <Navbar />
       <CursorLens />
       <ParticleMesh />
