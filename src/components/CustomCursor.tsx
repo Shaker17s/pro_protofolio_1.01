@@ -6,6 +6,9 @@ const CursorLens: React.FC = () => {
   const cursorRef = useRef<HTMLDivElement>(null);
   const followerRef = useRef<HTMLDivElement>(null);
   const [hoverType, setHoverType] = useState<'normal' | 'text' | 'button' | 'hero'>('normal');
+  const [hoveredElement, setHoveredElement] = useState<HTMLElement | null>(null);
+  const [customPosition, setCustomPosition] = useState<{ x: number; y: number } | null>(null);
+  const [customSize, setCustomSize] = useState<{ width: number; height: number } | null>(null);
   const [originalStyles, setOriginalStyles] = useState<{ [key: string]: string } | null>(null);
 
   const cursorVariants = {
@@ -22,7 +25,6 @@ const CursorLens: React.FC = () => {
       width: 60,
       height: 60,
       borderRadius: "50%",
-      backgroundColor: "rgba(0, 240, 255, 0.18)",
       borderWidth: "1px",
       backdropFilter: "blur(14px)",
       scale: 1.2,
@@ -32,7 +34,6 @@ const CursorLens: React.FC = () => {
       width: 200,
       height: 80,
       borderRadius: 24,
-      backgroundColor: "rgba(255, 255, 255, 0.05)",
       borderWidth: "1px",
       backdropFilter: "blur(25px)",
       scale: 1,
@@ -42,10 +43,11 @@ const CursorLens: React.FC = () => {
       width: 98,
       height: 98,
       borderRadius: 28,
-      backgroundColor: "rgba(255, 159, 67, 0.16)",
       borderWidth: "1px",
       backdropFilter: "blur(18px)",
-      scale: 1.1,      background: "linear-gradient(45deg, rgba(255, 159, 67, 0.16), rgba(0, 240, 255, 0.16), rgba(112, 0, 255, 0.16))",    }
+      scale: 1.1,
+      background: "linear-gradient(45deg, rgba(255, 159, 67, 0.16), rgba(0, 240, 255, 0.16), rgba(112, 0, 255, 0.16))",
+    }
   };
 
   useEffect(() => {
