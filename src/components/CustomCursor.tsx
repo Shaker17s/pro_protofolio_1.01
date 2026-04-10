@@ -72,7 +72,12 @@ const CursorLens: React.FC = () => {
     };
 
     const handleMouseOver = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
+      if (!(e.target instanceof HTMLElement)) {
+        setHoverType('normal');
+        return;
+      }
+
+      const target = e.target;
       const interactive = target.closest('a, button, .magnetic, input, textarea, .hover-trigger');
       const textElement = target.closest('p, span, h1, h2, h3, h4, h5, h6, .cursor-text');
       const ignoreLens = target.closest('.ignore-cursor-hover');
