@@ -37,13 +37,13 @@ const ProjectCard = ({ project, index, onSelect }: { project: typeof projects[0]
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 1, ease: [0.76, 0, 0.24, 1] }}
-      className={`group relative flex flex-col ${index % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-12 lg:gap-24 items-center mb-40 lg:mb-72`}
+      className={`group relative flex flex-col ${index % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-10 lg:gap-16 items-center mb-24 lg:mb-40`}
     >
       {/* Immersive Image Container */}
       <motion.div 
         layoutId={`project-container-${project.title}`}
         onClick={() => onSelect(project)}
-        className="relative flex-1 w-full aspect-video lg:aspect-[16/10] rounded-[3rem] overflow-hidden glass-artifact cursor-none group/img perspective-2500"
+        className="relative flex-1 w-full aspect-[4/3] lg:aspect-[16/10] rounded-[2rem] overflow-hidden glass-artifact cursor-none group/img perspective-2500"
       >
         <motion.img
           layoutId={`project-image-${project.title}`}
@@ -79,12 +79,12 @@ const ProjectCard = ({ project, index, onSelect }: { project: typeof projects[0]
         
         <motion.h3 
           layoutId={`project-title-${project.title}`}
-          className="text-6xl md:text-8xl font-heading font-black tracking-tighter leading-none group-hover:text-accent-cyan transition-colors duration-700"
+          className="text-5xl md:text-6xl font-heading font-black tracking-tighter leading-none group-hover:text-accent-cyan transition-colors duration-700"
         >
           {project.title}
         </motion.h3>
         
-        <p className="text-2xl text-white/30 font-body leading-relaxed max-w-xl">
+        <p className="text-xl text-white/35 font-body leading-relaxed max-w-xl">
           {project.description}
         </p>
         
@@ -105,7 +105,7 @@ const ProjectCard = ({ project, index, onSelect }: { project: typeof projects[0]
       </div>
 
       {/* Massive Background Decal */}
-      <span className="absolute -bottom-20 -right-20 text-[25rem] font-heading font-black text-white/[0.01] pointer-events-none select-none -z-10 group-hover:text-accent-purple/[0.03] transition-all duration-1000">
+      <span className="absolute -bottom-12 -right-12 text-[18rem] font-heading font-black text-white/[0.01] pointer-events-none select-none -z-10 group-hover:text-accent-purple/[0.03] transition-all duration-1000">
         0{index + 1}
       </span>
     </motion.div>
@@ -125,19 +125,19 @@ const Projects: React.FC = () => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-40 lg:mb-64"
+          className="mb-24 lg:mb-40"
         >
           <div className="inline-block px-4 py-2 glass-artifact text-[10px] font-mono tracking-[0.4em] text-accent-cyan uppercase mb-8">
             Data Repository
           </div>
-          <h2 className="text-8xl md:text-[12rem] font-heading font-black tracking-tighter leading-[0.85]">
+          <h2 className="text-7xl md:text-[10rem] font-heading font-black tracking-tighter leading-[0.85]">
             SELECTED <br />
             <span className="text-accent-purple italic font-light drop-shadow-2xl">ARTIFACTS.</span>
           </h2>
         </motion.div>
 
         <LayoutGroup>
-          <div className="space-y-32">
+          <div className="space-y-20">
             {projects.map((project, index) => (
               <ProjectCard key={project.title} project={project} index={index} onSelect={setSelectedProject} />
             ))}

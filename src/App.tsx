@@ -58,8 +58,8 @@ function App() {
             <Projects />
             <Contact />
             
-            <footer className="py-12 text-center text-white/20 text-[10px] font-mono tracking-[0.5em] uppercase">
-              <p>© {new Date().getFullYear()} Shaker Abdallah // System Core Stable</p>
+            <footer className="py-12 text-center text-white/30 text-[10px] font-mono tracking-[0.5em] uppercase">
+              <p>© {new Date().getFullYear()} Shaker Abdallah — built for impact, engineered for speed.</p>
             </footer>
           </motion.div>
         ) : (

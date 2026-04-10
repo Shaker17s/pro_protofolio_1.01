@@ -4,6 +4,9 @@ const ParticleMesh: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+    if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches || window.innerWidth < 768) return;
+
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d', { alpha: false });
@@ -122,7 +125,7 @@ const ParticleMesh: React.FC = () => {
     }
 
     const init = () => {
-      particles = Array.from({ length: 400 }, () => new Particle());
+      particles = Array.from({ length: 240 }, () => new Particle());
       pulses = [];
     };
 
@@ -137,8 +140,8 @@ const ParticleMesh: React.FC = () => {
 
       // Connections and Pulse Generation
       ctx.lineWidth = 0.5;
-      for (let i = 0; i < particles.length; i += 4) {
-        for (let j = i + 1; j < particles.length; j += 4) {
+      for (let i = 0; i < particles.length; i += 8) {
+        for (let j = i + 1; j < particles.length; j += 8) {
           const p1 = particles[i];
           const p2 = particles[j];
           

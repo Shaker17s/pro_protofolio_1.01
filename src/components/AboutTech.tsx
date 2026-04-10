@@ -23,19 +23,19 @@ const AboutTech: React.FC = () => {
       {/* Background Decor */}
       <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[800px] h-[800px] bg-accent-cyan/5 rounded-full blur-[200px] -z-10" />
       
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-32 items-center">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1.2, ease: [0.76, 0, 0.24, 1] }}
         >
-          <div className="inline-block px-4 py-1.5 glass-artifact text-[10px] font-mono tracking-[0.4em] text-accent-purple uppercase mb-10">
-            Cognitive Layer
+          <div className="inline-block px-4 py-1.5 glass-artifact text-[10px] font-mono tracking-[0.4em] text-accent-orange uppercase mb-10">
+            Processing Stack
           </div>
-          <h2 className="text-7xl md:text-9xl font-heading font-black tracking-tighter leading-[0.85] mb-12">
-            THE ARCHITECTURE <br />
-            <span className="text-accent-purple italic font-light drop-shadow-2xl">OF INTUITION.</span>
+          <h2 className="text-6xl md:text-8xl font-heading font-black tracking-tighter leading-[0.85] mb-12">
+            SKILLS <br />
+            <span className="text-accent-purple italic font-light drop-shadow-2xl">FOR IMPACT.</span>
           </h2>
           
           <div className="space-y-8 text-2xl text-white/30 leading-relaxed font-body max-w-xl">
@@ -48,7 +48,7 @@ const AboutTech: React.FC = () => {
           </div>
         </motion.div>
 
-        <div className="grid grid-cols-3 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
           {skills.map((skill, index) => (
             <motion.div
               key={skill.name}
@@ -56,7 +56,7 @@ const AboutTech: React.FC = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.05, duration: 0.3 }}
-              className="glass-artifact rounded-full px-4 py-2 flex items-center gap-2 hover:bg-white/10 transition-colors cursor-none"
+              className="glass-artifact rounded-3xl px-5 py-3 flex items-center gap-3 border border-white/10 hover:border-accent-orange/50 transition-all duration-300 cursor-none"
             >
               <skill.icon size={16} className="text-accent-cyan" />
               <span className="text-xs font-mono text-white/70">{skill.name}</span>

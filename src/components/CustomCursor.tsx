@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 const CursorLens: React.FC = () => {
   const cursorRef = useRef<HTMLDivElement>(null);
   const followerRef = useRef<HTMLDivElement>(null);
-  const [hoverType, setHoverType] = useState<'normal' | 'text' | 'button'>('normal');
+  const [hoverType, setHoverType] = useState<'normal' | 'text' | 'button' | 'hero'>('normal');
 
   const cursorVariants = {
     normal: {
@@ -18,13 +18,13 @@ const CursorLens: React.FC = () => {
       scale: 1,
     },
     textHover: {
-      width: 44,
-      height: 44,
+      width: 60,
+      height: 60,
       borderRadius: "50%",
       backgroundColor: "rgba(0, 240, 255, 0.18)",
       borderWidth: "1px",
       backdropFilter: "blur(14px)",
-      scale: 1.25,
+      scale: 1.2,
     },
     buttonHover: {
       width: 150,
@@ -34,6 +34,15 @@ const CursorLens: React.FC = () => {
       borderWidth: "1px",
       backdropFilter: "blur(14px)",
       scale: 1,
+    },
+    hero: {
+      width: 98,
+      height: 98,
+      borderRadius: 28,
+      backgroundColor: "rgba(255, 159, 67, 0.16)",
+      borderWidth: "1px",
+      backdropFilter: "blur(18px)",
+      scale: 1.1,
     }
   };
 
@@ -79,6 +88,7 @@ const CursorLens: React.FC = () => {
 
       const target = e.target;
       const interactive = target.closest('a, button, .magnetic, input, textarea, .hover-trigger');
+      const heroText = target.closest('.hero-text-hover');
       const textElement = target.closest('p, span, h1, h2, h3, h4, h5, h6, .cursor-text');
       const ignoreLens = target.closest('.ignore-cursor-hover');
 
@@ -97,6 +107,8 @@ const CursorLens: React.FC = () => {
             ease: "power3.out"
           });
         }
+      } else if (heroText && !ignoreLens) {
+        setHoverType('hero');
       } else if (textElement && !ignoreLens) {
         setHoverType('text');
       } else {
