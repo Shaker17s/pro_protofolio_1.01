@@ -116,7 +116,7 @@ const Projects: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
 
   return (
-    <section id="projects" className="relative py-20 px-6 overflow-hidden">
+    <section id="projects" className="relative py-16 px-6 overflow-hidden">
       {/* Atmosphere Decor */}
       <div className="absolute top-1/2 left-0 -translate-x-1/2 w-[1000px] h-[1000px] bg-accent-purple/5 rounded-full blur-[250px] -z-10" />
       

@@ -19,7 +19,7 @@ const skills = [
 
 const AboutTech: React.FC = () => {
   return (
-    <section className="relative py-20 px-6 overflow-hidden" id="about">
+    <section className="relative py-16 px-6 overflow-hidden" id="about">
       {/* Background Decor */}
       <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[800px] h-[800px] bg-accent-cyan/5 rounded-full blur-[200px] -z-10" />
       

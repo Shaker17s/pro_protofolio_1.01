@@ -84,14 +84,20 @@ const Hero: React.FC = () => {
   }, [quotes.length]);
 
   return (
-    <section className="relative h-screen flex flex-col items-center justify-center text-center px-4 perspective-2500 overflow-hidden">
+    <section className="relative min-h-[86vh] flex flex-col items-center justify-center text-center px-4 perspective-2500 overflow-hidden">
       {/* Background Decor */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-radial from-accent-purple/5 to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(0,240,255,0.12),_transparent_35%),linear-gradient(180deg,rgba(255,255,255,0.04),transparent_50%)] pointer-events-none" />
+      <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-[36rem] h-[36rem] rounded-full bg-accent-pink/10 blur-3xl opacity-70 pointer-events-none" />
 
       <motion.div
         style={{ opacity: textOpacity }}
-        className="relative z-10"
+        className="relative z-10 max-w-5xl"
       >
+        <div className="absolute top-8 right-8 hidden sm:flex items-center gap-2 glass-artifact px-4 py-2 uppercase tracking-[0.3em] text-[10px] text-white/70 shadow-[0_30px_90px_rgba(0,0,0,0.25)]">
+          <span className="inline-flex h-2 w-2 rounded-full bg-accent-cyan animate-pulse" />
+          NOW OPEN FOR ELITE ROLES
+        </div>
+
         <div className="inline-flex items-center gap-3 px-4 py-2 glass-artifact mb-8 hover:border-accent-cyan/50 transition-colors group cursor-none">
           <Zap size={14} className="text-accent-cyan animate-pulse" />
           <span className="text-[10px] font-mono tracking-[0.4em] text-white/50 group-hover:text-white transition-colors uppercase">System Link: Active</span>
@@ -101,25 +107,39 @@ const Hero: React.FC = () => {
           ref={nameRef}
           onClick={handleNameClick}
           style={{ fontWeight }}
-          className={`text-7xl md:text-[11rem] font-display mb-6 cursor-none select-none cursor-text transition-all duration-300 ${glitchActive ? 'animate-glitch text-accent-cyan' : 'hover:text-accent-purple'}`}
+          className={`relative ignore-cursor-hover text-6xl md:text-[8.5rem] font-display tracking-[-0.03em] leading-[0.9] mb-6 cursor-none select-none cursor-text transition-all duration-300 ${glitchActive ? 'animate-glitch' : ''}`}
         >
-          <span className="name-glitch-span">_</span>
+          <span className="ignore-cursor-hover block text-transparent bg-clip-text bg-gradient-to-r from-accent-cyan via-accent-purple to-accent-pink"
+            style={{ textShadow: '0 0 40px rgba(0,255,255,0.18)' }}
+          >
+            SHAKER
+          </span>
+          <span className="ignore-cursor-hover block text-transparent bg-clip-text bg-gradient-to-r from-accent-purple via-accent-cyan to-accent-pink"
+            style={{ textShadow: '0 0 50px rgba(255,255,255,0.18)' }}
+          >
+            ABDALLAH
+          </span>
+          <span className="absolute inset-x-0 -bottom-6 h-1.5 bg-gradient-to-r from-accent-cyan/60 via-accent-purple/50 to-accent-pink/60 blur-2xl opacity-80" />
         </motion.h1>
 
-        <div className="h-12 flex items-center justify-center gap-4 overflow-hidden mb-12">
-          <div className="w-12 h-[1px] bg-gradient-to-r from-transparent to-accent-cyan/40" />
-          <span className="role-text cursor-text text-sm md:text-xl font-mono tracking-[0.3em] bg-gradient-to-r from-accent-cyan to-accent-pink bg-clip-text text-transparent uppercase">
+        <div className="h-12 flex items-center justify-center gap-4 overflow-hidden mb-10">
+          <div className="w-16 h-[1px] bg-gradient-to-r from-transparent to-accent-cyan/40" />
+          <span className="role-text cursor-text text-sm md:text-lg font-mono tracking-[0.35em] bg-gradient-to-r from-accent-cyan to-accent-pink bg-clip-text text-transparent uppercase">
             AI PROMPT ENGINEER
           </span>
-          <div className="w-12 h-[1px] bg-gradient-to-l from-transparent to-accent-cyan/40" />
+          <div className="w-16 h-[1px] bg-gradient-to-l from-transparent to-accent-cyan/40" />
         </div>
 
-        <div className="flex flex-wrap items-center justify-center gap-8">
-          <button className="magnetic magnetic-btn glass-artifact px-12 py-6 text-xs font-heading font-black tracking-[0.4em] uppercase hover:bg-white/10 hover:backdrop-blur-md transition-all duration-700 hover:scale-110">
+        <div className="max-w-2xl mx-auto text-base md:text-lg leading-8 text-white/50 mb-12">
+          Crafting elite digital identities with glassmorphic depth, lightning-fast interaction, and a premium visual narrative designed to make every recruiter stop and stay.
+        </div>
+
+        <div className="flex flex-wrap items-center justify-center gap-6">
+          <button className="magnetic magnetic-btn glass-artifact px-10 py-5 text-[11px] font-heading font-black tracking-[0.35em] uppercase hover:bg-white/15 hover:shadow-[0_0_35px_rgba(255,255,255,0.15)] transition-all duration-300 hover:scale-[1.04]">
             Analyze Artifacts
           </button>
-          <button className="magnetic group flex items-center gap-4 text-[10px] font-mono tracking-[0.5em] uppercase text-white/40 hover:text-white transition-colors">
-            Init Connection <div className="w-12 h-[1px] bg-white/20 group-hover:w-20 group-hover:bg-accent-cyan transition-all duration-500" />
+          <button className="magnetic group flex items-center gap-3 text-[10px] font-mono tracking-[0.45em] uppercase text-white/40 hover:text-white transition-colors">
+            Init Connection <div className="w-12 h-[1px] bg-white/20 group-hover:w-20 group-hover:bg-accent-cyan transition-all duration-300" />
           </button>
         </div>
 

@@ -4,14 +4,14 @@ import { Github, Linkedin, Mail, Send } from 'lucide-react';
 
 const Contact: React.FC = () => {
   return (
-    <section id="contact" className="section-container relative">
+    <section id="contact" className="section-container relative py-16">
       <div className="max-w-4xl mx-auto text-center">
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
+          initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          className="mb-16"
+          className="mb-12"
         >
           <div className="inline-block px-4 py-1.5 glass text-[10px] font-mono tracking-[0.3em] text-accent-purple uppercase mb-8">
             Transmission Channel

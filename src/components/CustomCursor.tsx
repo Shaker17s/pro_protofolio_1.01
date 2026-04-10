@@ -9,8 +9,8 @@ const CursorLens: React.FC = () => {
 
   const cursorVariants = {
     normal: {
-      width: 40,
-      height: 40,
+      width: 44,
+      height: 44,
       borderRadius: "50%",
       backgroundColor: "rgba(255, 255, 255, 0)",
       borderWidth: "1px",
@@ -18,21 +18,21 @@ const CursorLens: React.FC = () => {
       scale: 1,
     },
     textHover: {
-      width: 40,
-      height: 40,
+      width: 44,
+      height: 44,
       borderRadius: "50%",
-      backgroundColor: "rgba(0, 240, 255, 0.5)", // More vibrant neon
-      borderWidth: "0px",
-      backdropFilter: "blur(10px)",
-      scale: 1.3,
+      backgroundColor: "rgba(0, 240, 255, 0.18)",
+      borderWidth: "1px",
+      backdropFilter: "blur(14px)",
+      scale: 1.25,
     },
     buttonHover: {
-      width: 140,
-      height: 50,
-      borderRadius: 16,
-      backgroundColor: "rgba(255, 255, 255, 0.15)",
+      width: 150,
+      height: 52,
+      borderRadius: 18,
+      backgroundColor: "rgba(255, 255, 255, 0.16)",
       borderWidth: "1px",
-      backdropFilter: "blur(12px)",
+      backdropFilter: "blur(14px)",
       scale: 1,
     }
   };
@@ -73,9 +73,10 @@ const CursorLens: React.FC = () => {
 
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      const interactive = target.closest('a, button, .magnetic, .glass-artifact, input, textarea, .hover-trigger');
+      const interactive = target.closest('a, button, .magnetic, input, textarea, .hover-trigger');
       const textElement = target.closest('p, span, h1, h2, h3, h4, h5, h6, .cursor-text');
-      
+      const ignoreLens = target.closest('.ignore-cursor-hover');
+
       if (interactive) {
         setHoverType('button');
         
@@ -85,13 +86,13 @@ const CursorLens: React.FC = () => {
           const centerY = rect.top + rect.height / 2;
           
           gsap.to(interactive, {
-            x: (mouseX - centerX) * 0.6, // Stronger magnetic pull
-            y: (mouseY - centerY) * 0.6,
-            duration: 0.4,
+            x: (mouseX - centerX) * 0.65,
+            y: (mouseY - centerY) * 0.65,
+            duration: 0.3,
             ease: "power3.out"
           });
         }
-      } else if (textElement) {
+      } else if (textElement && !ignoreLens) {
         setHoverType('text');
       } else {
         setHoverType('normal');

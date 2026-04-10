@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Cpu, Terminal, Layers, Mail } from 'lucide-react';
-import { gsap } from 'gsap';
 
 const navItems = [
   { name: 'Core', icon: <Cpu size={16} />, href: '#top' },
@@ -28,7 +27,7 @@ const Navbar: React.FC = () => {
   }, []);
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-[1000] p-6 pointer-events-none glass-artifact backdrop-blur-xl bg-black/20 border-b border-white/10">
+    <nav className={`fixed top-0 left-0 w-full z-[1000] p-6 pointer-events-none glass-artifact backdrop-blur-xl bg-black/10 border-b border-white/10 transition-all duration-500 ${scrolled ? 'bg-black/30 shadow-[0_20px_60px_rgba(0,0,0,0.35)]' : 'bg-black/10'}`}>
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         {/* Brand/Logo */}
         <motion.div 
