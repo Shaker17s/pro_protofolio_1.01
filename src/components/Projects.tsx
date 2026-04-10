@@ -130,9 +130,9 @@ const Projects: React.FC = () => {
           <div className="inline-block px-4 py-2 glass-artifact text-[10px] font-mono tracking-[0.4em] text-accent-cyan uppercase mb-8">
             Data Repository
           </div>
-          <h2 className="text-7xl md:text-[10rem] font-heading font-black tracking-tighter leading-[0.85]">
+          <h2 className="ignore-cursor-hover text-7xl md:text-[10rem] font-heading font-black tracking-tighter leading-[0.85]">
             SELECTED <br />
-            <span className="text-accent-purple italic font-light drop-shadow-2xl">ARTIFACTS.</span>
+            <span className="ignore-cursor-hover text-accent-purple italic font-light drop-shadow-2xl">ARTIFACTS.</span>
           </h2>
         </motion.div>
 

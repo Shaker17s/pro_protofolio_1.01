@@ -33,9 +33,9 @@ const AboutTech: React.FC = () => {
           <div className="inline-block px-4 py-1.5 glass-artifact text-[10px] font-mono tracking-[0.4em] text-accent-orange uppercase mb-10">
             Processing Stack
           </div>
-          <h2 className="text-6xl md:text-8xl font-heading font-black tracking-tighter leading-[0.85] mb-12">
+          <h2 className="ignore-cursor-hover text-6xl md:text-8xl font-heading font-black tracking-tighter leading-[0.85] mb-12">
             SKILLS <br />
-            <span className="text-accent-purple italic font-light drop-shadow-2xl">FOR IMPACT.</span>
+            <span className="ignore-cursor-hover text-accent-purple italic font-light drop-shadow-2xl">FOR IMPACT.</span>
           </h2>
           
           <div className="space-y-8 text-2xl text-white/30 leading-relaxed font-body max-w-xl">

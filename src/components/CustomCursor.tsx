@@ -149,15 +149,7 @@ const CursorLens: React.FC = () => {
         setHoverType('text');
         setHoveredElement(textElement as HTMLElement);
         
-        // Change text color to gradient
-        gsap.to(textElement, {
-          background: 'linear-gradient(45deg, #00F0FF, #FF9F43, #7000FF)',
-          backgroundClip: 'text',
-          WebkitBackgroundClip: 'text',
-          color: 'transparent',
-          duration: 0.3,
-          ease: 'power2.out'
-        });
+        // No need to change text color, lens will change
       } else {
         setHoverType('normal');
         setHoveredElement(null);
@@ -175,15 +167,15 @@ const CursorLens: React.FC = () => {
         });
       }
       
-      // Reset text color
-      if (hoveredElement && (hoveredElement.tagName.match(/^(P|SPAN|H[1-6])$/) || hoveredElement.classList.contains('cursor-text'))) {
-        gsap.to(hoveredElement, {
-          background: 'none',
-          color: '',
-          duration: 0.3,
-          ease: 'power2.out'
-        });
-      }
+      // Reset text color - removed since we don't change it anymore
+      // if (hoveredElement && (hoveredElement.tagName.match(/^(P|SPAN|H[1-6])$/) || hoveredElement.classList.contains('cursor-text'))) {
+      //   gsap.to(hoveredElement, {
+      //     background: 'none',
+      //     color: '',
+      //     duration: 0.3,
+      //     ease: 'power2.out'
+      //   });
+      // }
       
       // Reset button styles
       if (originalStyles && hoveredElement && hoveredElement.tagName === 'BUTTON') {

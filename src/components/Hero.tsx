@@ -113,12 +113,12 @@ const Hero: React.FC = () => {
           style={{ fontWeight }}
           className={`relative ignore-cursor-hover text-6xl md:text-[8.5rem] font-display tracking-[-0.03em] leading-[0.9] mb-6 cursor-none select-none cursor-text transition-all duration-300 ${glitchActive ? 'animate-glitch' : ''}`}
         >
-          <span className="hero-text-hover ignore-cursor-hover block text-transparent bg-clip-text bg-gradient-to-r from-accent-cyan via-accent-purple to-accent-pink hover:text-orange-300"
+          <span className="hero-text-hover block text-transparent bg-clip-text bg-gradient-to-r from-accent-cyan via-accent-purple to-accent-pink hover:text-orange-300"
             style={{ textShadow: '0 0 40px rgba(0,255,255,0.18)' }}
           >
             SHAKER
           </span>
-          <span className="hero-text-hover ignore-cursor-hover block text-transparent bg-clip-text bg-gradient-to-r from-accent-purple via-accent-cyan to-accent-pink hover:text-orange-300"
+          <span className="hero-text-hover block text-transparent bg-clip-text bg-gradient-to-r from-accent-purple via-accent-cyan to-accent-pink hover:text-orange-300"
             style={{ textShadow: '0 0 50px rgba(255,255,255,0.18)' }}
           >
             ABDALLAH
