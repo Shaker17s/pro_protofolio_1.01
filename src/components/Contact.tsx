@@ -1,119 +1,139 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Mail, Send } from 'lucide-react';
+import { Mail, Send, MessageSquare, User, Zap, Linkedin, Github, Instagram } from 'lucide-react';
 
 const Contact: React.FC = () => {
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [status, setStatus] = useState<'idle' | 'sending' | 'sent'>('idle');
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus('sending');
+    setTimeout(() => setStatus('sent'), 1500);
+  };
+
   return (
-    <section id="contact" className="section-container relative py-16">
-      <div className="max-w-4xl mx-auto text-center">
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          className="mb-12"
-        >
-          <div className="inline-block px-4 py-1.5 glass text-[10px] font-mono tracking-[0.3em] text-accent-purple uppercase mb-8">
-            Transmission Channel
-          </div>
-          <h2 className="text-6xl md:text-8xl font-heading font-black tracking-tighter mb-4">
-            Initiate <span className="text-accent-purple italic font-light">Contact.</span>
-          </h2>
-          <p className="text-xl text-white/40 font-body">Available for elite collaborations and visionary projects.</p>
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-left mb-20 lg:mb-32">
-          {/* Contact Info */}
-          <div className="space-y-8">
-            <div className="glass p-10 space-y-6 group hover:border-accent-purple/30 transition-all duration-500">
-              <div className="w-12 h-12 glass rounded-2xl flex items-center justify-center text-accent-purple group-hover:scale-110 transition-transform">
-                <Mail size={24} />
+    <section id="contact" className="relative py-32 px-6 overflow-hidden">
+      {/* Dynamic Background */}
+      <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[500px] h-[500px] bg-accent-cyan/5 rounded-full blur-[120px] -z-10" />
+      
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-stretch">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="flex flex-col justify-between"
+          >
+            <div>
+              <div className="inline-block px-4 py-1.5 glass-artifact text-[9px] font-mono tracking-[0.4em] text-accent-cyan uppercase mb-8 rounded-full">
+                Encrypted Channel
               </div>
-              <div className="space-y-2">
-                <h4 className="text-[10px] font-mono tracking-[0.2em] uppercase text-white/30">Direct Stream</h4>
-                <p className="text-xl md:text-2xl font-heading font-bold">shaker.abdallah@example.com</p>
+              <h2 className="text-5xl md:text-8xl font-heading font-black tracking-tighter leading-[0.85] mb-8">
+                INITIATE <br />
+                <span className="text-accent-orange italic font-light">DIALOGUE.</span>
+              </h2>
+              <p className="text-xl text-white/40 font-body leading-relaxed max-w-md">
+                Ready to architect the next evolution of your digital presence? Secure the link and let's build something that matters.
+              </p>
+            </div>
+
+            <div className="mt-12 space-y-6">
+              <div className="flex items-center gap-6 p-6 glass-artifact rounded-2xl group transition-all duration-500 hover:border-accent-cyan/30">
+                <div className="p-4 bg-accent-cyan/10 rounded-xl text-accent-cyan group-hover:scale-110 transition-transform">
+                  <Mail size={24} />
+                </div>
+                <div>
+                  <p className="text-[10px] font-mono text-white/30 uppercase tracking-widest mb-1">Direct Terminal</p>
+                  <p className="text-lg font-mono text-white/80">shaker.abdallah@proton.me</p>
+                </div>
+              </div>
+              
+              <div className="flex items-center gap-6 p-6 glass-artifact rounded-2xl group transition-all duration-500 hover:border-accent-purple/30">
+                <div className="p-4 bg-accent-purple/10 rounded-xl text-accent-purple group-hover:scale-110 transition-transform">
+                  <MessageSquare size={24} />
+                </div>
+                <div>
+                  <p className="text-[10px] font-mono text-white/30 uppercase tracking-widest mb-1">Visual Network</p>
+                  <p className="text-lg font-mono text-white/80">@shaker_dev</p>
+                </div>
               </div>
             </div>
-            
-            <div className="flex gap-6">
-              {[
-                { icon: <Github />, label: 'Github', href: '#' },
-                { icon: <Linkedin />, label: 'LinkedIn', href: '#' },
-              ].map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  className="magnetic w-20 h-20 glass rounded-[1.5rem] flex items-center justify-center hover:bg-white hover:text-black transition-all duration-500 hover:scale-110"
-                >
-                  {social.icon}
-                </a>
-              ))}
-            </div>
-          </div>
+          </motion.div>
 
-          {/* Contact Form */}
-          <form className="space-y-6">
-            <div className="relative group">
-              <input 
-                type="text" 
-                placeholder="Identification"
-                className="w-full bg-white/[0.03] border border-white/10 rounded-2xl px-8 py-5 outline-none focus:border-accent-purple/50 focus:bg-white/[0.05] transition-all duration-500 font-body placeholder:text-white/20"
-              />
-              <div className="absolute inset-0 rounded-2xl bg-accent-purple/5 blur-2xl opacity-0 group-focus-within:opacity-100 transition-opacity pointer-events-none" />
-            </div>
-            
-            <div className="relative group">
-              <input 
-                type="email" 
-                placeholder="Terminal Address"
-                className="w-full bg-white/[0.03] border border-white/10 rounded-2xl px-8 py-5 outline-none focus:border-accent-purple/50 focus:bg-white/[0.05] transition-all duration-500 font-body placeholder:text-white/20"
-              />
-              <div className="absolute inset-0 rounded-2xl bg-accent-purple/5 blur-2xl opacity-0 group-focus-within:opacity-100 transition-opacity pointer-events-none" />
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="glass-artifact p-10 md:p-12 rounded-[2.5rem] border-white/5 shadow-2xl relative"
+          >
+            <div className="absolute top-0 right-0 p-8">
+                <Send size={40} className="text-white/[0.03]" />
             </div>
 
-            <div className="relative group">
-              <textarea 
-                rows={5}
-                placeholder="Protocol Transmission"
-                className="w-full bg-white/[0.03] border border-white/10 rounded-2xl px-8 py-6 outline-none focus:border-accent-purple/50 focus:bg-white/[0.05] transition-all duration-500 font-body placeholder:text-white/20 resize-none"
-              />
-              <div className="absolute inset-0 rounded-2xl bg-accent-purple/5 blur-2xl opacity-0 group-focus-within:opacity-100 transition-opacity pointer-events-none" />
-            </div>
+            <form onSubmit={handleSubmit} className="space-y-8 relative z-10">
+              <div className="space-y-6">
+                <div className="relative group">
+                  <input
+                    type="text"
+                    required
+                    placeholder="IDENTIFIER (NAME)"
+                    className="w-full bg-white/[0.03] border-b border-white/10 px-0 py-4 text-sm font-mono tracking-widest text-white focus:outline-none focus:border-accent-cyan transition-colors placeholder:text-white/20 transition-all group-hover:border-white/20"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  />
+                  <User size={14} className="absolute right-0 top-5 text-white/20 group-hover:text-accent-cyan transition-colors" />
+                </div>
 
-            <button className="magnetic-btn w-full flex items-center justify-center gap-4 group h-20">
-              <span className="relative z-10 transition-colors group-hover:text-white">Send Transmission</span>
-              <Send size={20} className="relative z-10 text-accent-purple group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-            </button>
-          </form>
+                <div className="relative group">
+                  <input
+                    type="email"
+                    required
+                    placeholder="PROTOCOL (EMAIL)"
+                    className="w-full bg-white/[0.03] border-b border-white/10 px-0 py-4 text-sm font-mono tracking-widest text-white focus:outline-none focus:border-accent-purple transition-colors placeholder:text-white/20 transition-all group-hover:border-white/20"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  />
+                  <Mail size={14} className="absolute right-0 top-5 text-white/20 group-hover:text-accent-purple transition-colors" />
+                </div>
+
+                <div className="relative group">
+                  <textarea
+                    required
+                    rows={4}
+                    placeholder="DATA PACKET (MESSAGE)"
+                    className="w-full bg-white/[0.03] border-b border-white/10 px-0 py-4 text-sm font-mono tracking-widest text-white focus:outline-none focus:border-accent-orange transition-colors placeholder:text-white/20 transition-all group-hover:border-white/20 resize-none"
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  />
+                  <MessageSquare size={14} className="absolute right-0 top-5 text-white/20 group-hover:text-accent-orange transition-colors" />
+                </div>
+              </div>
+
+              <button
+                type="submit"
+                disabled={status !== 'idle'}
+                className="w-full magnetic-btn py-5 text-[11px] font-heading font-black tracking-[0.5em] uppercase flex items-center justify-center gap-4 group cursor-none"
+              >
+                {status === 'idle' && (
+                  <>
+                    Transmit Signal <Send size={14} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  </>
+                )}
+                {status === 'sending' && (
+                  <>
+                    Encrypted Sending... <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                  </>
+                )}
+                {status === 'sent' && (
+                  <>
+                    Signal Received <Zap size={14} className="text-accent-orange" />
+                  </>
+                )}
+              </button>
+            </form>
+          </motion.div>
         </div>
-      </div>
-
-      {/* Newsletter Signup */}
-      <div className="max-w-7xl mx-auto mt-20">
-        <div className="text-center mb-12">
-          <h3 className="text-2xl font-heading font-bold mb-4">Stay Connected</h3>
-          <p className="text-white/40 font-body">Receive updates on new projects and AI innovations</p>
-        </div>
-        <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-          <div className="relative group flex-1">
-            <input 
-              type="email" 
-              placeholder="Enter your email"
-              className="w-full bg-white/[0.03] border border-white/10 rounded-2xl px-6 py-4 outline-none focus:border-accent-cyan/50 focus:bg-white/[0.05] transition-all duration-500 font-body placeholder:text-white/20"
-            />
-            <div className="absolute inset-0 rounded-2xl bg-accent-cyan/5 blur-2xl opacity-0 group-focus-within:opacity-100 transition-opacity pointer-events-none" />
-          </div>
-          <button className="magnetic-btn px-8 py-4 glass-artifact hover:bg-accent-cyan hover:text-black transition-all duration-500">
-            Subscribe
-          </button>
-        </div>
-      </div>
-
-      {/* Footer Decal */}
-      <div className="max-w-7xl mx-auto border-t border-white/5 pt-12 text-center">
-        <p className="text-[10px] font-mono tracking-[0.5em] text-white/20 uppercase">
-          © {new Date().getFullYear()} SHAKER ABDALLAH // ENGINEERED FOR THE FUTURE
-        </p>
       </div>
     </section>
   );

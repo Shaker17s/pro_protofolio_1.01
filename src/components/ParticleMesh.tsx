@@ -129,19 +129,29 @@ const ParticleMesh: React.FC = () => {
       pulses = [];
     };
 
+    let lastScrollY = window.scrollY;
+
     const animate = () => {
       ctx.fillStyle = '#000000';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+      const scrollDelta = window.scrollY - lastScrollY;
+      lastScrollY = window.scrollY;
+
       particles.forEach(p => {
+        // Add vertical flow based on scroll
+        p.y -= scrollDelta * 0.5 * (1000 / p.z);
+        p.baseY -= scrollDelta * 0.2;
+        
         p.update();
         p.draw();
       });
 
-      // Connections and Pulse Generation
+      // Connections: only check a limited subset for high performance
       ctx.lineWidth = 0.5;
-      for (let i = 0; i < particles.length; i += 8) {
-        for (let j = i + 1; j < particles.length; j += 8) {
+      const step = canvas.width < 1200 ? 12 : 8; // Reduce density on smaller screens
+      for (let i = 0; i < particles.length; i += step) {
+        for (let j = i + step; j < particles.length; j += step) {
           const p1 = particles[i];
           const p2 = particles[j];
           
@@ -155,18 +165,17 @@ const ParticleMesh: React.FC = () => {
 
           const dx = sx1 - sx2;
           const dy = sy1 - sy2;
-          const dist = Math.sqrt(dx * dx + dy * dy);
+          const distSq = dx * dx + dy * dy;
 
-          if (dist < 150) {
+          if (distSq < 22500) { // 150 * 150
             ctx.beginPath();
             ctx.moveTo(sx1, sy1);
             ctx.lineTo(sx2, sy2);
             ctx.strokeStyle = p1.color;
-            ctx.globalAlpha = (1 - dist / 150) * 0.08;
+            ctx.globalAlpha = (1 - Math.sqrt(distSq) / 150) * 0.08;
             ctx.stroke();
 
-            // Randomly generate pulses
-            if (Math.random() < 0.001) {
+            if (Math.random() < 0.0005) {
               pulses.push(new Pulse(p1, p2));
             }
           }

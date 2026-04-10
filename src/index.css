@@ -50,14 +50,14 @@
   }
 
   .glass-artifact {
-    @apply bg-black/40 backdrop-blur-xl border border-white/5 relative overflow-hidden;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5), inset 0 0 1px rgba(255, 255, 255, 0.1);
+    @apply bg-black/20 backdrop-blur-2xl border border-white/5 relative overflow-hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 0 0px 1px rgba(255, 255, 255, 0.05);
   }
 
   .glass-artifact::after {
     content: '';
     @apply absolute inset-0 opacity-0 transition-opacity duration-700 pointer-events-none;
-    background: linear-gradient(135deg, transparent 45%, rgba(112, 0, 255, 0.05) 50%, transparent 55%);
+    background: linear-gradient(135deg, transparent 45%, rgba(255, 255, 255, 0.05) 50%, transparent 55%);
   }
 
   .glass-artifact:hover::after {
@@ -65,13 +65,13 @@
   }
 
   .magnetic-btn {
-    @apply cursor-pointer rounded-[1.5rem] border border-white/10 bg-white/5 shadow-[0_20px_80px_rgba(0,0,0,0.12)] backdrop-blur-2xl text-white transition-all duration-300;
-    box-shadow: 0 20px 80px rgba(0, 0, 0, 0.18), 0 0 2px rgba(255, 255, 255, 0.08);
+    @apply cursor-none rounded-[1rem] border border-white/10 bg-white/5 backdrop-blur-3xl text-white transition-all duration-500 relative overflow-hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2), inset 0 0 2px rgba(255, 255, 255, 0.1);
   }
 
   .magnetic-btn:hover {
-    transform: translateY(-2px) scale(1.02);
-    border-color: rgba(255, 255, 255, 0.22);
+    @apply border-accent-cyan/40 bg-white/10;
+    transform: scale(1.05);
   }
 
   .section-container {
@@ -120,5 +120,5 @@
 }
 
 .liquid-lens {
-  filter: url(#liquid-distortion);
+  /* Removed for performance optimization */
 }

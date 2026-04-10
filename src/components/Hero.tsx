@@ -111,27 +111,53 @@ const Hero: React.FC = () => {
           ref={nameRef}
           onClick={handleNameClick}
           style={{ fontWeight }}
-          className={`relative ignore-cursor-hover text-6xl md:text-[8.5rem] font-display tracking-[-0.03em] leading-[0.9] mb-6 cursor-none select-none cursor-text transition-all duration-300 ${glitchActive ? 'animate-glitch' : ''}`}
+          className={`relative text-6xl md:text-[9rem] font-display tracking-[-0.04em] leading-[0.85] mb-8 cursor-none select-none transition-all duration-300 ${glitchActive ? 'animate-glitch' : ''}`}
         >
-          <span className="hero-text-hover block text-transparent bg-clip-text bg-gradient-to-r from-accent-cyan via-accent-purple to-accent-pink hover:text-orange-300"
-            style={{ textShadow: '0 0 40px rgba(0,255,255,0.18)' }}
+          {/* Base Layer (Dimmed) */}
+          <div className="relative z-10 flex flex-col items-center">
+            <span className="hero-text-hover block text-white/20 transition-all duration-700">
+              <span className="inline-block transform hover:skew-x-12 transition-transform cursor-none">S</span>HAKER
+            </span>
+            <span className="hero-text-hover block text-white/10 transition-all duration-700 italic font-light tracking-widest relative">
+              ABDALLAH
+              <span className="absolute -bottom-2 left-0 w-full h-px bg-white/5" />
+            </span>
+          </div>
+
+          {/* Highlight Layer (Masked) */}
+          <div 
+            className="absolute inset-0 z-20 pointer-events-none flex flex-col items-center select-none"
+            style={{
+              maskImage: 'radial-gradient(circle 120px at var(--cursor-x) var(--cursor-y), black 0%, transparent 100%)',
+              WebkitMaskImage: 'radial-gradient(circle 120px at var(--cursor-x) var(--cursor-y), black 0%, transparent 100%)',
+            }}
           >
-            SHAKER
-          </span>
-          <span className="hero-text-hover block text-transparent bg-clip-text bg-gradient-to-r from-accent-purple via-accent-cyan to-accent-pink hover:text-orange-300"
-            style={{ textShadow: '0 0 50px rgba(255,255,255,0.18)' }}
-          >
-            ABDALLAH
-          </span>
-          <span className="absolute inset-x-0 -bottom-6 h-1.5 bg-gradient-to-r from-orange-400 via-accent-purple/80 to-accent-cyan/60 blur-2xl opacity-90" />
+            <span className="block text-accent-orange drop-shadow-[0_0_40px_rgba(255,159,67,0.6)]">
+              <span className="inline-block transform -skew-x-12 translate-y-2 border-b-2 border-accent-orange/50 pb-1">S</span>HAKER
+            </span>
+            <span className="block text-accent-purple italic font-light tracking-widest relative">
+              ABDALLAH
+              <span className="absolute -bottom-2 left-0 w-full h-px bg-accent-purple/50 shadow-[0_0_10px_rgba(112,0,255,0.5)]" />
+            </span>
+          </div>
+
+          {/* Ornate Flourishes */}
+          <div className="absolute inset-0 pointer-events-none opacity-40">
+            <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-accent-cyan/20 translate-x-[-40px] translate-y-[-20px]" />
+            <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-accent-pink/20 translate-x-[40px] translate-y-[20px]" />
+            
+            {/* Extended S stroke */}
+            <div className="absolute top-1/2 left-0 w-[200px] h-[1px] bg-gradient-to-r from-accent-orange/30 to-transparent translate-x-[-220px]" />
+            <div className="absolute top-1/2 right-0 w-[200px] h-[1px] bg-gradient-to-l from-accent-purple/30 to-transparent translate-x-[220px]" />
+          </div>
         </motion.h1>
 
-        <div className="h-12 flex items-center justify-center gap-4 overflow-hidden mb-10">
-          <div className="w-16 h-[1px] bg-gradient-to-r from-transparent to-accent-cyan/40" />
-          <span className="hero-text-hover role-text cursor-text text-sm md:text-lg font-mono tracking-[0.35em] bg-gradient-to-r from-accent-cyan to-accent-pink bg-clip-text text-transparent uppercase">
+        <div className="h-12 flex items-center justify-center gap-6 overflow-hidden mb-12">
+          <div className="w-24 h-[1px] bg-gradient-to-r from-transparent via-accent-cyan/50 to-transparent" />
+          <span className="hero-text-hover role-text cursor-text text-sm md:text-lg font-mono tracking-[0.4em] text-accent-cyan/60 uppercase">
             AI PROMPT ENGINEER
           </span>
-          <div className="w-16 h-[1px] bg-gradient-to-l from-transparent to-accent-cyan/40" />
+          <div className="w-24 h-[1px] bg-gradient-to-l from-transparent via-accent-cyan/50 to-transparent" />
         </div>
 
         <div className="max-w-2xl mx-auto text-base md:text-lg leading-8 text-white/50 mb-12">

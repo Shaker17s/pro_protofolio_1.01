@@ -33,64 +33,54 @@ const projects = [
 const ProjectCard = ({ project, index, onSelect }: { project: typeof projects[0], index: number, onSelect: (p: any) => void }) => {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 100 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 1, ease: [0.76, 0, 0.24, 1] }}
-      className={`group relative flex flex-col ${index % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-10 lg:gap-16 items-center mb-24 lg:mb-40`}
+      initial={{ opacity: 0, scale: 0.95 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className={`group relative flex flex-col ${index % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-8 lg:gap-12 items-center mb-20 lg:mb-32`}
     >
-      {/* Immersive Image Container */}
+      {/* Refined Image Container */}
       <motion.div 
         layoutId={`project-container-${project.title}`}
         onClick={() => onSelect(project)}
-        className="relative flex-1 w-full aspect-[4/3] lg:aspect-[16/10] rounded-[2rem] overflow-hidden glass-artifact cursor-none group/img perspective-2500"
+        className="relative flex-1 w-full max-w-xl aspect-[16/9] rounded-2xl overflow-hidden glass-artifact cursor-none group/img shadow-2xl"
       >
         <motion.img
           layoutId={`project-image-${project.title}`}
           src={project.image}
           alt={project.title}
-          className="w-full h-full object-cover grayscale group-hover/img:grayscale-0 transition-all duration-300 group-hover:scale-110"
+          className="w-full h-full object-cover grayscale brightness-50 group-hover/img:grayscale-0 group-hover/img:brightness-100 transition-all duration-700 group-hover:scale-105"
         />
 
-        {/* Cinematic Ripple Effect */}
-        <motion.div
-          className="absolute inset-0 bg-gradient-to-r from-accent-purple/0 via-accent-cyan/20 to-accent-pink/0 opacity-0 group-hover/img:opacity-100"
-          initial={{ scale: 0.8, opacity: 0 }}
-          whileHover={{ scale: 1.2, opacity: 1 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60" />
         
-        {/* Analyze Indicator */}
-        <div className="absolute inset-0 bg-accent-purple/20 opacity-0 group-hover/img:opacity-100 transition-all duration-700 backdrop-blur-sm flex flex-col items-center justify-center gap-4">
-          <div className="p-6 glass-artifact rounded-full border-accent-cyan/30 animate-pulse">
-            <ArrowUpRight size={32} className="text-accent-cyan" />
-          </div>
-          <span className="text-[10px] font-mono tracking-[0.5em] text-white uppercase">Initialize Analysis</span>
+        {/* Minimal Indicator */}
+        <div className="absolute top-4 right-4 p-3 glass-artifact rounded-full opacity-0 group-hover/img:opacity-100 transition-all duration-300">
+          <ArrowUpRight size={20} className="text-accent-cyan" />
         </div>
       </motion.div>
 
-      {/* Content Container */}
-      <div className="flex-1 space-y-10 text-left">
-        <div className="flex items-center gap-6">
-          <div className="w-2 h-2 rounded-full bg-accent-purple animate-pulse" />
-          <span className="text-accent-purple font-mono text-xs tracking-[0.5em] uppercase opacity-70">Artifact 0{index + 1}</span>
-          <div className="h-[1px] flex-1 bg-white/5" />
+      {/* Compact Content Container */}
+      <div className="flex-1 space-y-6 max-w-lg">
+        <div className="flex items-center gap-4">
+          <span className="text-accent-purple font-mono text-[10px] tracking-[0.4em] uppercase opacity-60">Artifact 0{index + 1}</span>
+          <div className="h-[1px] w-12 bg-accent-purple/30" />
         </div>
         
         <motion.h3 
           layoutId={`project-title-${project.title}`}
-          className="text-5xl md:text-6xl font-heading font-black tracking-tighter leading-none group-hover:text-accent-cyan transition-colors duration-700"
+          className="text-3xl md:text-5xl font-heading font-black tracking-tighter leading-tight"
         >
           {project.title}
         </motion.h3>
         
-        <p className="text-xl text-white/35 font-body leading-relaxed max-w-xl">
+        <p className="text-base text-white/40 font-body leading-relaxed">
           {project.description}
         </p>
         
-        <div className="flex flex-wrap gap-4">
+        <div className="flex flex-wrap gap-2">
           {project.tech.map(t => (
-            <span key={t} className="px-6 py-3 glass-artifact text-[10px] font-mono font-bold text-white/50 uppercase tracking-[0.2em] group-hover:text-accent-cyan transition-all duration-500">
+            <span key={t} className="px-4 py-1.5 glass-artifact text-[9px] font-mono font-medium text-white/40 uppercase tracking-[0.1em] rounded-full">
               {t}
             </span>
           ))}
@@ -98,16 +88,11 @@ const ProjectCard = ({ project, index, onSelect }: { project: typeof projects[0]
 
         <button 
           onClick={() => onSelect(project)}
-          className="flex items-center gap-6 group/btn text-xs font-heading font-black tracking-[0.4em] uppercase text-white/60 hover:text-white transition-colors"
+          className="magnetic group flex items-center gap-4 text-[10px] font-heading font-bold tracking-[0.3em] uppercase text-accent-cyan hover:text-white transition-colors"
         >
-          Detailed Review <ArrowUpRight size={18} className="text-accent-purple group-hover/btn:translate-x-2 group-hover/btn:-translate-y-2 transition-transform duration-500" />
+          Analysis Ready <ArrowUpRight size={14} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
         </button>
       </div>
-
-      {/* Massive Background Decal */}
-      <span className="absolute -bottom-12 -right-12 text-[18rem] font-heading font-black text-white/[0.01] pointer-events-none select-none -z-10 group-hover:text-accent-purple/[0.03] transition-all duration-1000">
-        0{index + 1}
-      </span>
     </motion.div>
   );
 };
@@ -116,28 +101,25 @@ const Projects: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
 
   return (
-    <section id="projects" className="relative py-16 px-6 overflow-hidden">
-      {/* Atmosphere Decor */}
-      <div className="absolute top-1/2 left-0 -translate-x-1/2 w-[1000px] h-[1000px] bg-accent-purple/5 rounded-full blur-[250px] -z-10" />
-      
+    <section id="projects" className="relative py-24 px-6 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-24 lg:mb-40"
+          className="mb-20 text-center lg:text-left"
         >
-          <div className="inline-block px-4 py-2 glass-artifact text-[10px] font-mono tracking-[0.4em] text-accent-cyan uppercase mb-8">
+          <div className="inline-block px-4 py-1.5 glass-artifact text-[9px] font-mono tracking-[0.4em] text-accent-cyan uppercase mb-6 rounded-full">
             Data Repository
           </div>
-          <h2 className="ignore-cursor-hover text-7xl md:text-[10rem] font-heading font-black tracking-tighter leading-[0.85]">
+          <h2 className="text-5xl md:text-[8rem] font-heading font-black tracking-tighter leading-[0.85]">
             SELECTED <br />
-            <span className="ignore-cursor-hover text-accent-purple italic font-light drop-shadow-2xl">ARTIFACTS.</span>
+            <span className="text-accent-purple italic font-light">ARTIFACTS.</span>
           </h2>
         </motion.div>
 
         <LayoutGroup>
-          <div className="space-y-20">
+          <div className="space-y-32 lg:space-y-48">
             {projects.map((project, index) => (
               <ProjectCard key={project.title} project={project} index={index} onSelect={setSelectedProject} />
             ))}

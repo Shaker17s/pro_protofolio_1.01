@@ -50,37 +50,41 @@ const NeuralNetwork: React.FC = () => {
       if (isActive || pulseParticles.length > 0) {
         pulseParticles = pulseParticles.filter(p => p.life > 0);
         
-        pulseParticles.forEach(p => {
+        // Batch particles for faster processing
+        const particleCount = pulseParticles.length;
+        
+        for (let i = 0; i < particleCount; i++) {
+          const p = pulseParticles[i];
           p.x += p.vx;
           p.y += p.vy;
           p.life -= 0.008;
-          
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
-          ctx.fillStyle = p.color;
-          ctx.globalAlpha = p.life;
-          ctx.shadowBlur = 10;
-          ctx.shadowColor = p.color;
-          ctx.fill();
-          ctx.globalAlpha = 1.0;
-          ctx.shadowBlur = 0;
 
-          // Connections
-          pulseParticles.forEach(p2 => {
+          // Faster drawing: No shadowBlur here
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, 1.5, 0, Math.PI * 2);
+          ctx.fillStyle = p.color;
+          ctx.globalAlpha = p.life * 0.8;
+          ctx.fill();
+
+          // Optimize connections: only check a subset or skip nearby frames
+          // To keep O(n^2) but make it faster, we only check every 2nd or 3rd particle
+          // or simply keep it but ensure no external expensive operations inside.
+          for (let j = i + 1; j < particleCount; j++) {
+            const p2 = pulseParticles[j];
             const dx = p.x - p2.x;
             const dy = p.y - p2.y;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-            if (dist < 80) {
+            const distSq = dx * dx + dy * dy; // Use squared distance for speed
+            
+            if (distSq < 6400) { // 80 * 80
               ctx.beginPath();
               ctx.moveTo(p.x, p.y);
               ctx.lineTo(p2.x, p2.y);
               ctx.strokeStyle = p.color;
-              ctx.globalAlpha = p.life * 0.15;
+              ctx.globalAlpha = p.life * 0.1;
               ctx.stroke();
-              ctx.globalAlpha = 1.0;
             }
-          });
-        });
+          }
+        }
 
         if (isActive) {
           ctx.font = 'bold 12px "Fira Code"';
