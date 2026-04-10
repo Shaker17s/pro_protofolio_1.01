@@ -6,6 +6,7 @@ const CursorLens: React.FC = () => {
   const cursorRef = useRef<HTMLDivElement>(null);
   const followerRef = useRef<HTMLDivElement>(null);
   const [hoverType, setHoverType] = useState<'normal' | 'text' | 'button' | 'hero'>('normal');
+  const [originalStyles, setOriginalStyles] = useState<{ [key: string]: string } | null>(null);
 
   const cursorVariants = {
     normal: {
@@ -25,15 +26,17 @@ const CursorLens: React.FC = () => {
       borderWidth: "1px",
       backdropFilter: "blur(14px)",
       scale: 1.2,
+      background: "linear-gradient(45deg, rgba(0, 240, 255, 0.18), rgba(255, 159, 67, 0.18), rgba(112, 0, 255, 0.18))",
     },
     buttonHover: {
-      width: 150,
-      height: 52,
-      borderRadius: 18,
-      backgroundColor: "rgba(255, 255, 255, 0.16)",
+      width: 200,
+      height: 80,
+      borderRadius: 24,
+      backgroundColor: "rgba(255, 255, 255, 0.05)",
       borderWidth: "1px",
-      backdropFilter: "blur(14px)",
+      backdropFilter: "blur(25px)",
       scale: 1,
+      background: "linear-gradient(45deg, rgba(255, 255, 255, 0.05), rgba(0, 240, 255, 0.05), rgba(255, 159, 67, 0.05))",
     },
     hero: {
       width: 98,
@@ -42,8 +45,7 @@ const CursorLens: React.FC = () => {
       backgroundColor: "rgba(255, 159, 67, 0.16)",
       borderWidth: "1px",
       backdropFilter: "blur(18px)",
-      scale: 1.1,
-    }
+      scale: 1.1,      background: "linear-gradient(45deg, rgba(255, 159, 67, 0.16), rgba(0, 240, 255, 0.16), rgba(112, 0, 255, 0.16))",    }
   };
 
   useEffect(() => {
@@ -71,8 +73,11 @@ const CursorLens: React.FC = () => {
 
     const render = () => {
       // Ultra-fast and smooth trailing
-      followerX += (mouseX - followerX) * 0.25;
-      followerY += (mouseY - followerY) * 0.25;
+      const targetX = customPosition ? customPosition.x : mouseX;
+      const targetY = customPosition ? customPosition.y : mouseY;
+      
+      followerX += (targetX - followerX) * 0.25;
+      followerY += (targetY - followerY) * 0.25;
       
       xSetFollower(followerX);
       ySetFollower(followerY);
@@ -83,6 +88,7 @@ const CursorLens: React.FC = () => {
     const handleMouseOver = (e: MouseEvent) => {
       if (!(e.target instanceof HTMLElement)) {
         setHoverType('normal');
+        setHoveredElement(null);
         return;
       }
 
@@ -94,9 +100,36 @@ const CursorLens: React.FC = () => {
 
       if (interactive) {
         setHoverType('button');
+        setHoveredElement(interactive as HTMLElement);
+        
+        const rect = interactive.getBoundingClientRect();
+        setCustomPosition({
+          x: rect.left + rect.width / 2,
+          y: rect.top + rect.height / 2
+        });
+        setCustomSize({
+          width: rect.width + 20,
+          height: rect.height + 20
+        });
+        
+        // Store original styles
+        const original = {
+          backgroundColor: getComputedStyle(interactive).backgroundColor,
+          backdropFilter: getComputedStyle(interactive).backdropFilter,
+          border: getComputedStyle(interactive).border,
+        };
+        setOriginalStyles(original);
+        
+        // Make button glassy
+        gsap.to(interactive, {
+          backgroundColor: 'rgba(255, 255, 255, 0.1)',
+          backdropFilter: 'blur(20px)',
+          border: '1px solid rgba(255, 255, 255, 0.2)',
+          duration: 0.3,
+          ease: 'power2.out'
+        });
         
         if (interactive.classList.contains('magnetic')) {
-          const rect = interactive.getBoundingClientRect();
           const centerX = rect.left + rect.width / 2;
           const centerY = rect.top + rect.height / 2;
           
@@ -109,10 +142,23 @@ const CursorLens: React.FC = () => {
         }
       } else if (heroText && !ignoreLens) {
         setHoverType('hero');
+        setHoveredElement(heroText as HTMLElement);
       } else if (textElement && !ignoreLens) {
         setHoverType('text');
+        setHoveredElement(textElement as HTMLElement);
+        
+        // Change text color to gradient
+        gsap.to(textElement, {
+          background: 'linear-gradient(45deg, #00F0FF, #FF9F43, #7000FF)',
+          backgroundClip: 'text',
+          WebkitBackgroundClip: 'text',
+          color: 'transparent',
+          duration: 0.3,
+          ease: 'power2.out'
+        });
       } else {
         setHoverType('normal');
+        setHoveredElement(null);
       }
     };
 
@@ -126,6 +172,30 @@ const CursorLens: React.FC = () => {
           ease: "elastic.out(1, 0.3)"
         });
       }
+      
+      // Reset text color
+      if (hoveredElement && (hoveredElement.tagName.match(/^(P|SPAN|H[1-6])$/) || hoveredElement.classList.contains('cursor-text'))) {
+        gsap.to(hoveredElement, {
+          background: 'none',
+          color: '',
+          duration: 0.3,
+          ease: 'power2.out'
+        });
+      }
+      
+      // Reset button styles
+      if (originalStyles && hoveredElement && hoveredElement.tagName === 'BUTTON') {
+        gsap.to(hoveredElement, {
+          ...originalStyles,
+          duration: 0.3,
+          ease: 'power2.out'
+        });
+      }
+      
+      setHoveredElement(null);
+      setCustomPosition(null);
+      setCustomSize(null);
+      setOriginalStyles(null);
     };
 
     window.addEventListener('mousemove', handleMouseMove);
@@ -152,7 +222,11 @@ const CursorLens: React.FC = () => {
         ref={followerRef}
         className="fixed top-0 left-0 border border-white/20 rounded-full pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2 mix-blend-difference liquid-lens overflow-hidden"
         variants={cursorVariants}
-        animate={hoverType}
+        animate={{
+          ...cursorVariants[hoverType],
+          width: customSize ? customSize.width : cursorVariants[hoverType].width,
+          height: customSize ? customSize.height : cursorVariants[hoverType].height,
+        }}
         transition={{ duration: 0.3, ease: "easeOut" }}
       >
         <div className="absolute inset-0 bg-gradient-to-br from-accent-purple/20 to-accent-cyan/20 opacity-0 group-hover:opacity-100 transition-opacity" />
