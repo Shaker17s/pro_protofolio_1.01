@@ -14,7 +14,7 @@ const CursorLens: React.FC = () => {
   const targetY = useMotionValue(0);
 
   // Smooth springs for the lens
-  const springConfig = { damping: 20, stiffness: 400, mass: 0.3 };
+  const springConfig = { damping: 12, stiffness: 500, mass: 0.1 };
   const lensX = useSpring(targetX, springConfig);
   const lensY = useSpring(targetY, springConfig);
   const lensWidth = useSpring(44, springConfig);
@@ -84,9 +84,9 @@ const CursorLens: React.FC = () => {
         setHoverType('hero');
         targetX.set(mouseX.get());
         targetY.set(mouseY.get());
-        lensWidth.set(100);
-        lensHeight.set(100);
-        lensRadius.set(50);
+        lensWidth.set(80);
+        lensHeight.set(80);
+        lensRadius.set(40);
       } else if (textElement) {
         setHoverType('text');
         targetX.set(mouseX.get());
