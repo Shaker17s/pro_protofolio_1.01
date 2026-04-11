@@ -14,7 +14,7 @@ const CursorLens: React.FC = () => {
   const targetY = useMotionValue(0);
 
   // Smooth springs for the lens
-  const springConfig = { damping: 30, stiffness: 250, mass: 0.5 };
+  const springConfig = { damping: 20, stiffness: 400, mass: 0.3 };
   const lensX = useSpring(targetX, springConfig);
   const lensY = useSpring(targetY, springConfig);
   const lensWidth = useSpring(44, springConfig);
@@ -65,9 +65,9 @@ const CursorLens: React.FC = () => {
         
         targetX.set(rect.left + rect.width / 2);
         targetY.set(rect.top + rect.height / 2);
-        lensWidth.set(rect.width + 16);
-        lensHeight.set(rect.height + 16);
-        lensRadius.set(12);
+        lensWidth.set(Math.max(rect.width + 20, 90));
+        lensHeight.set(Math.max(rect.height + 20, 50));
+        lensRadius.set(16);
 
         if (interactive.classList.contains('magnetic')) {
             const centerX = rect.left + rect.width / 2;
@@ -83,23 +83,23 @@ const CursorLens: React.FC = () => {
         setHoverType('hero');
         targetX.set(mouseX.get());
         targetY.set(mouseY.get());
-        lensWidth.set(80); // Capped size for better precision
-        lensHeight.set(80);
-        lensRadius.set(40);
+        lensWidth.set(100);
+        lensHeight.set(100);
+        lensRadius.set(50);
       } else if (textElement) {
         setHoverType('text');
         targetX.set(mouseX.get());
         targetY.set(mouseY.get());
-        lensWidth.set(60);
-        lensHeight.set(60);
-        lensRadius.set(30);
+        lensWidth.set(70);
+        lensHeight.set(70);
+        lensRadius.set(35);
       } else {
         setHoverType('normal');
         targetX.set(mouseX.get());
         targetY.set(mouseY.get());
-        lensWidth.set(32);
-        lensHeight.set(32);
-        lensRadius.set(16);
+        lensWidth.set(44);
+        lensHeight.set(44);
+        lensRadius.set(22);
       }
     };
 

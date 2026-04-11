@@ -30,7 +30,7 @@ function App() {
   }, []);
 
   return (
-    <main id="top" className="relative min-h-screen bg-black overflow-x-hidden selection:bg-accent-purple/30 scroll-smooth">
+    <main id="top" className="relative min-h-screen bg-black overflow-x-hidden selection:bg-accent-purple/30">
       <GlobalFilters />
       <CyberMesh />
       <GlobalBackground />
