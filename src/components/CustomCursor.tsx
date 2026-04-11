@@ -56,7 +56,8 @@ const CursorLens: React.FC = () => {
 
       const interactive = target.closest('a, button, .magnetic, .hover-trigger');
       const heroText = target.closest('.hero-text-hover');
-      const textElement = target.closest('p, h1, h2, h3, h4, span, .lens-reveal');
+      const lensRevealElement = target.closest('.lens-reveal');
+      const textElement = !lensRevealElement ? target.closest('p, h1, h2, h3, h4, span') : null;
 
       if (interactive) {
         setHoverType('button');
