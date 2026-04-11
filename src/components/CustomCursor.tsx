@@ -44,7 +44,7 @@ const CursorLens: React.FC = () => {
       document.documentElement.style.setProperty('--cursor-x', `${e.clientX}px`);
       document.documentElement.style.setProperty('--cursor-y', `${e.clientY}px`);
 
-      if (hoverType !== 'button' && hoverType !== 'hero') {
+      if (hoverType !== 'button') {
         targetX.set(e.clientX);
         targetY.set(e.clientY);
       }
