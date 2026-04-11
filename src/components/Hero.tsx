@@ -141,21 +141,14 @@ const Hero: React.FC = () => {
             </span>
           </div>
 
-          {/* Highlight Layer (Masked - Sync'd via Raw Mouse) */}
-          <div 
-            className="absolute inset-0 z-20 pointer-events-none flex flex-col items-center select-none"
-            style={{
-              maskImage: 'radial-gradient(circle 120px at var(--cursor-x) var(--cursor-y), black 0%, transparent 100%)',
-              WebkitMaskImage: 'radial-gradient(circle 120px at var(--cursor-x) var(--cursor-y), black 0%, transparent 100%)',
-            }}
-          >
-            <span className="block text-accent-orange drop-shadow-[0_0_50px_rgba(255,159,67,1)] font-black">
-              SHAKER
-            </span>
-            <span className="block text-white italic font-black tracking-widest relative drop-shadow-[0_0_30px_rgba(255,255,255,0.7)]">
-              ABDALLAH
-              <span className="absolute -bottom-6 left-0 w-full h-[1.5px] bg-white shadow-[0_0_20px_rgba(255,255,255,1)]" />
-            </span>
+              <span className="block text-accent-orange drop-shadow-[0_0_50px_rgba(255,159,67,1)] font-black uppercase text-7xl md:text-[11rem] tracking-[-0.06em] leading-[0.8]">
+                SHAKER
+              </span>
+              <span className="block text-white italic font-black tracking-widest relative drop-shadow-[0_0_30px_rgba(255,255,255,0.7)] text-7xl md:text-[11rem] leading-[0.8]">
+                ABDALLAH
+                <span className="absolute -bottom-6 left-0 w-full h-[1.5px] bg-white shadow-[0_0_20px_rgba(255,255,255,1)]" />
+              </span>
+            </div>
           </div>
         </motion.h1>
 

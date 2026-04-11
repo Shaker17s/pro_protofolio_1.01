@@ -3,9 +3,6 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 
 const CyberMesh: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollY } = useScroll();
-  const rotateX = useTransform(scrollY, [0, 2000], [20, 45]);
-  const translateZ = useTransform(scrollY, [0, 2000], [0, -200]);
 
   useEffect(() => {
     const container = containerRef.current;

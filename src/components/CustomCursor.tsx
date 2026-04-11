@@ -13,38 +13,35 @@ const CursorLens: React.FC = () => {
   const targetX = useMotionValue(0);
   const targetY = useMotionValue(0);
 
-  // Smooth springs for the lens
-  const springConfig = { damping: 12, stiffness: 500, mass: 0.1 };
+  // Smooth springs for the lens - INCREASED STIFFNESS for snap
+  const springConfig = { damping: 40, stiffness: 450, mass: 0.4 };
   const lensX = useSpring(targetX, springConfig);
   const lensY = useSpring(targetY, springConfig);
-  const lensWidth = useSpring(44, springConfig);
-  const lensHeight = useSpring(44, springConfig);
-  const lensRadius = useSpring(22, springConfig);
+  const lensWidth = useSpring(32, springConfig);
+  const lensHeight = useSpring(32, springConfig);
+  const lensRadius = useSpring(16, springConfig);
 
-  // Synchronize CSS masking variables with the spring position
+  // Synchronize CSS masking variables with the RAW mouse position for ZERO lag
   useEffect(() => {
-    const unsubscribeX = lensX.on('change', (v) => {
+    const unsubscribeX = mouseX.on('change', (v) => {
       document.documentElement.style.setProperty('--cursor-x', `${v}px`);
     });
-    const unsubscribeY = lensY.on('change', (v) => {
+    const unsubscribeY = mouseY.on('change', (v) => {
       document.documentElement.style.setProperty('--cursor-y', `${v}px`);
     });
     return () => {
       unsubscribeX();
       unsubscribeY();
     };
-  }, [lensX, lensY]);
+  }, [mouseX, mouseY]);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
+      // Use raw coordinates to eliminate lag
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
 
-      // IMMEDIATE MASKING UPDATE (No spring lag)
-      document.documentElement.style.setProperty('--cursor-x', `${e.clientX}px`);
-      document.documentElement.style.setProperty('--cursor-y', `${e.clientY}px`);
-
-      if (hoverType !== 'button') {
+      if (hoverType !== 'button' && hoverType !== 'hero') {
         targetX.set(e.clientX);
         targetY.set(e.clientY);
       }

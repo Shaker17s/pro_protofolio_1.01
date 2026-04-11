@@ -52,9 +52,9 @@ const Navbar: React.FC = () => {
               transition={{ delay: i * 0.1 }}
               className="magnetic relative group px-6 py-2 ml-2 flex items-center gap-3 transition-all duration-300"
             >
-              <div className="absolute inset-0 bg-white/[0.12] backdrop-blur-md border border-white/20 rounded-full opacity-60 group-hover:opacity-100 group-hover:bg-orange-400/15 group-hover:border-orange-400/40 transition-all duration-500 -z-10" />
-              <span className="text-accent-orange group-hover:scale-110 transition-transform">{item.icon}</span>
-              <span className="text-[9px] font-mono tracking-[0.4em] uppercase font-bold text-white/50 group-hover:text-white transition-colors">{item.name}</span>
+              <div className="absolute inset-0 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full opacity-40 group-hover:opacity-100 group-hover:bg-accent-cyan/15 group-hover:border-accent-cyan/40 transition-all duration-500 -z-10" />
+              <span className="text-white group-hover:text-accent-cyan group-hover:scale-110 transition-all duration-300">{item.icon}</span>
+              <span className="text-[10px] font-mono tracking-[0.4em] uppercase font-black text-white group-hover:text-white transition-colors">{item.name}</span>
             </motion.a>
           ))}
         </div>
