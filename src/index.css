@@ -49,6 +49,39 @@
       0 0 120px rgba(0, 240, 255, 0.05);
   }
 
+  /* Technical HUD & Noise */
+  @keyframes scanline {
+    from { transform: translateY(-100%); }
+    to { transform: translateY(100%); }
+  }
+
+  @keyframes crt-noise {
+    0% { transform: translate(0,0); }
+    10% { transform: translate(-5%,-5%); }
+    20% { transform: translate(-10%,5%); }
+    30% { transform: translate(5%,-10%); }
+    40% { transform: translate(-5%,15%); }
+    50% { transform: translate(-10%,5%); }
+    60% { transform: translate(15%,0); }
+    70% { transform: translate(0,10%); }
+    80% { transform: translate(-15%,0); }
+    90% { transform: translate(10%,5%); }
+    100% { transform: translate(5%,0); }
+  }
+
+  .hud-scanline {
+    @apply absolute inset-0 pointer-events-none overflow-hidden z-[9999];
+    background: linear-gradient(to bottom, transparent, rgba(0, 240, 255, 0.05), transparent);
+    height: 15vh;
+    animation: scanline 8s linear infinite;
+  }
+
+  .crt-noise {
+    @apply absolute inset-0 pointer-events-none opacity-[0.03] z-[9998];
+    background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+    animation: crt-noise 0.2s steps(2) infinite;
+  }
+
   .glass-artifact {
     @apply bg-black/30 backdrop-blur-3xl border border-white/10 relative overflow-hidden;
     box-shadow: 

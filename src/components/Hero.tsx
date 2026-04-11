@@ -73,7 +73,21 @@ const Hero: React.FC = () => {
     };
 
     const interval = setInterval(rotateSubtitle, 3000);
-    return () => clearInterval(interval);
+    
+    const handleNameMouseMove = (e: MouseEvent) => {
+      const { clientX, clientY } = e;
+      const xOffset = (clientX - window.innerWidth / 2) / 20;
+      const yOffset = (clientY - window.innerHeight / 2) / 20;
+      document.documentElement.style.setProperty('--mouse-x-offset', `${xOffset}px`);
+      document.documentElement.style.setProperty('--mouse-y-offset', `${yOffset}px`);
+    };
+    
+    window.addEventListener('mousemove', handleNameMouseMove);
+
+    return () => {
+      clearInterval(interval);
+      window.removeEventListener('mousemove', handleNameMouseMove);
+    };
   }, []);
 
   useEffect(() => {
@@ -89,14 +103,42 @@ const Hero: React.FC = () => {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(0,240,255,0.08),_transparent_40%)] pointer-events-none" />
       <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-[36rem] h-[36rem] rounded-full bg-accent-pink/5 blur-3xl opacity-50 pointer-events-none" />
 
-          {/* Base Layer (Dimmed) */}
+      <motion.div
+        style={{ opacity: textOpacity }}
+        className="relative z-10 max-w-5xl"
+      >
+        <div className="absolute top-0 right-0 hidden sm:flex items-center gap-4 glass-artifact px-6 py-3 uppercase tracking-[0.4em] text-[10px] text-white/70 shadow-2xl overflow-hidden group">
+          <div className="absolute inset-0 bg-accent-cyan/5 w-full h-full -translate-x-full group-hover:translate-x-full transition-transform duration-[2000ms] ease-linear" />
+          <span className="inline-flex h-2 w-2 rounded-full bg-accent-cyan animate-pulse shadow-[0_0_10px_rgba(0,240,255,1)]" />
+          SYSTEM_STATUS: <span className="text-accent-cyan font-black">LEGENDARY_OPTIMIZED</span>
+        </div>
+
+        <div className="inline-flex items-center gap-4 px-5 py-2.5 glass-artifact mb-10 hover:border-accent-orange/50 transition-all duration-500 group cursor-none rounded-full overflow-hidden relative">
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-accent-orange/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+          <Zap size={14} className="text-accent-orange animate-pulse" />
+          <span className="text-[10px] font-mono tracking-[0.6em] text-white/40 group-hover:text-white transition-colors uppercase font-black">Neural_Link::Active</span>
+        </div>
+
+        <motion.h1
+          ref={nameRef}
+          onClick={handleNameClick}
+          style={{ fontWeight }}
+          className={`relative text-7xl md:text-[12rem] font-display tracking-[-0.06em] leading-[0.8] mb-16 cursor-none select-none transition-all duration-500 ${glitchActive ? 'animate-glitch' : ''}`}
+        >
+          {/* 3D Neural Projection Shadow */}
+          <div className="absolute inset-0 z-0 opacity-20 blur-sm flex flex-col items-center select-none pointer-events-none translate-x-[var(--mouse-x-offset,0)] translate-y-[var(--mouse-y-offset,0)] transition-transform duration-75">
+            <span className="block text-accent-orange">SHAKER</span>
+            <span className="block italic font-light tracking-widest">ABDALLAH</span>
+          </div>
+
+          {/* Base Layer */}
           <div className="relative z-10 flex flex-col items-center">
-            <span className="hero-text-hover block text-white/20 transition-all duration-700">
-              <span className="inline-block transform hover:skew-x-12 transition-transform cursor-none">S</span>HAKER
+            <span className="hero-text-hover block text-white/30 transition-all duration-700 hover:text-white/60">
+              SHAKER
             </span>
-            <span className="hero-text-hover block text-white/10 transition-all duration-700 italic font-light tracking-widest relative">
+            <span className="hero-text-hover block text-white/20 transition-all duration-700 italic font-light tracking-widest relative">
               ABDALLAH
-              <span className="absolute -bottom-4 left-0 w-full h-px bg-white/5" />
+              <span className="absolute -bottom-6 left-0 w-full h-px bg-white/10" />
             </span>
           </div>
 
@@ -104,16 +146,16 @@ const Hero: React.FC = () => {
           <div 
             className="absolute inset-0 z-20 pointer-events-none flex flex-col items-center select-none"
             style={{
-              maskImage: 'radial-gradient(circle 140px at var(--cursor-x) var(--cursor-y), black 0%, transparent 100%)',
-              WebkitMaskImage: 'radial-gradient(circle 140px at var(--cursor-x) var(--cursor-y), black 0%, transparent 100%)',
+              maskImage: 'radial-gradient(circle 160px at var(--cursor-x) var(--cursor-y), black 0%, transparent 100%)',
+              WebkitMaskImage: 'radial-gradient(circle 160px at var(--cursor-x) var(--cursor-y), black 0%, transparent 100%)',
             }}
           >
-            <span className="block text-accent-orange drop-shadow-[0_0_50px_rgba(255,159,67,0.7)]">
-              <span className="inline-block transform -skew-x-12 translate-y-2 border-b-2 border-accent-orange pb-2">S</span>HAKER
+            <span className="block text-accent-orange drop-shadow-[0_0_60px_rgba(255,159,67,1)] font-black">
+              SHAKER
             </span>
-            <span className="block text-white italic font-light tracking-widest relative drop-shadow-[0_0_30px_rgba(255,255,255,0.4)]">
+            <span className="block text-white italic font-black tracking-widest relative drop-shadow-[0_0_40px_rgba(255,255,255,0.6)]">
               ABDALLAH
-              <span className="absolute -bottom-4 left-0 w-full h-px bg-white shadow-[0_0_15px_rgba(255,255,255,0.8)]" />
+              <span className="absolute -bottom-6 left-0 w-full h-px bg-white shadow-[0_0_20px_rgba(255,255,255,1)]" />
             </span>
           </div>
 

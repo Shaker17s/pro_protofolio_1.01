@@ -13,6 +13,7 @@ import NeuralNetwork from './components/NeuralNetwork';
 import Preloader from './components/Preloader';
 import FloatingShapes from './components/FloatingShapes';
 import GlobalBackground from './components/GlobalBackground';
+import CyberMesh from './components/CyberMesh';
 
 function App() {
   const [isTerminalMode, setIsTerminalMode] = useState(false);
@@ -31,9 +32,21 @@ function App() {
   return (
     <main id="top" className="relative min-h-screen bg-black overflow-x-hidden selection:bg-accent-purple/30 scroll-smooth">
       <GlobalFilters />
+      <CyberMesh />
       <GlobalBackground />
       <CursorLens />
       
+      {/* HUD Shell */}
+      <div className="hud-scanline" />
+      <div className="crt-noise" />
+      <div className="fixed inset-0 pointer-events-none z-[9997] border-[20px] border-black/20" />
+      
+      {/* HUD Frame Markers */}
+      <div className="fixed top-10 left-10 w-40 h-px bg-white/10 z-[9996]" />
+      <div className="fixed top-10 left-10 w-px h-40 bg-white/10 z-[9996]" />
+      <div className="fixed bottom-10 right-10 w-40 h-px bg-white/10 z-[9996]" />
+      <div className="fixed bottom-10 right-10 w-px h-40 bg-white/10 z-[9996]" />
+
       <div className="fixed inset-0 bg-black -z-50" />
       
       <AnimatePresence>

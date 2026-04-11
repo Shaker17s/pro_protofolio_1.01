@@ -43,19 +43,40 @@ const ProjectCard = ({ project, index, onSelect }: { project: typeof projects[0]
       <motion.div 
         layoutId={`project-container-${project.title}`}
         onClick={() => onSelect(project)}
-        className="relative flex-1 w-full max-w-xl aspect-[16/9] rounded-2xl overflow-hidden glass-artifact cursor-none group/img shadow-2xl"
+        className="relative flex-1 w-full max-w-xl aspect-[16/9] rounded-2xl overflow-hidden glass-artifact cursor-none group/img shadow-2xl border border-white/10"
       >
         <motion.img
           layoutId={`project-image-${project.title}`}
           src={project.image}
           alt={project.title}
-          className="w-full h-full object-cover grayscale brightness-50 group-hover/img:grayscale-0 group-hover/img:brightness-100 transition-all duration-700 group-hover:scale-105"
+          className="w-full h-full object-cover grayscale brightness-[0.35] group-hover/img:grayscale-0 group-hover/img:brightness-[0.8] transition-all duration-1000 group-hover:scale-110"
         />
 
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60" />
+        {/* Metadata Scanner Line */}
+        <div className="absolute inset-0 pointer-events-none opacity-0 group-hover/img:opacity-100 transition-opacity duration-500">
+            <div className="absolute top-0 left-0 w-full h-1 bg-accent-cyan shadow-[0_0_20px_rgba(0,240,255,1)] animate-scanline z-30" />
+            
+            {/* HUD Corner Overlays */}
+            <div className="absolute top-4 left-4 font-mono text-[8px] text-accent-cyan uppercase tracking-widest bg-black/60 px-2 py-1 backdrop-blur-md border border-accent-cyan/20">
+              SECURE_LINK // ARTIFACT_{index + 1}
+            </div>
+            <div className="absolute bottom-4 left-4 font-mono text-[8px] text-white/50 uppercase tracking-[0.4em] space-y-1">
+              <div>RES: 3840x2160</div>
+              <div>BITRATE: 45MB/S</div>
+              <div>ENCRYPT: AES-256</div>
+            </div>
+        </div>
+
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80" />
         
+        {/* Animated Scan HUD */}
+        <div className="absolute inset-0 border border-white/5 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 pointer-events-none">
+          <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-accent-cyan/40" />
+          <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-accent-cyan/40" />
+        </div>
+
         {/* Minimal Indicator */}
-        <div className="absolute top-4 right-4 p-3 glass-artifact rounded-full opacity-0 group-hover/img:opacity-100 transition-all duration-300">
+        <div className="absolute top-4 right-4 p-4 glass-artifact rounded-full opacity-0 group-hover/img:opacity-100 transition-all duration-500 translate-y-4 group-hover/img:translate-y-0 shadow-[0_0_30px_rgba(0,240,255,0.3)]">
           <ArrowUpRight size={20} className="text-accent-cyan" />
         </div>
       </motion.div>
