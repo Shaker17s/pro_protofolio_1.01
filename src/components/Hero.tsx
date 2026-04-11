@@ -122,47 +122,40 @@ const Hero: React.FC = () => {
         <motion.h1
           ref={nameRef}
           onClick={handleNameClick}
-          style={{ fontWeight }}
-          className={`relative text-7xl md:text-[12rem] font-display tracking-[-0.06em] leading-[0.8] mb-16 cursor-none select-none transition-all duration-500 ${glitchActive ? 'animate-glitch' : ''}`}
+          className={`relative text-7xl md:text-[11rem] font-display tracking-[-0.06em] leading-[0.8] mb-16 cursor-none select-none transition-all duration-700 ${glitchActive ? 'animate-glitch' : ''}`}
         >
-          {/* 3D Neural Projection Shadow */}
-          <div className="absolute inset-0 z-0 opacity-20 blur-sm flex flex-col items-center select-none pointer-events-none translate-x-[var(--mouse-x-offset,0)] translate-y-[var(--mouse-y-offset,0)] transition-transform duration-75">
+          {/* Static Perspective Shadow */}
+          <div className="absolute inset-0 z-0 opacity-10 blur-[4px] flex flex-col items-center select-none pointer-events-none translate-x-[4px] translate-y-[4px]">
             <span className="block text-accent-orange">SHAKER</span>
             <span className="block italic font-light tracking-widest">ABDALLAH</span>
           </div>
 
           {/* Base Layer */}
           <div className="relative z-10 flex flex-col items-center">
-            <span className="hero-text-hover block text-white/30 transition-all duration-700 hover:text-white/60">
+            <span className="hero-text-hover block text-white/40 transition-all duration-700 hover:text-white/70">
               SHAKER
             </span>
             <span className="hero-text-hover block text-white/20 transition-all duration-700 italic font-light tracking-widest relative">
               ABDALLAH
-              <span className="absolute -bottom-6 left-0 w-full h-px bg-white/10" />
+              <span className="absolute -bottom-6 left-0 w-full h-[1.5px] bg-white/10" />
             </span>
           </div>
 
-          {/* Highlight Layer (Masked) */}
+          {/* Highlight Layer (Masked - Sync'd via Raw Mouse) */}
           <div 
             className="absolute inset-0 z-20 pointer-events-none flex flex-col items-center select-none"
             style={{
-              maskImage: 'radial-gradient(circle 160px at var(--cursor-x) var(--cursor-y), black 0%, transparent 100%)',
-              WebkitMaskImage: 'radial-gradient(circle 160px at var(--cursor-x) var(--cursor-y), black 0%, transparent 100%)',
+              maskImage: 'radial-gradient(circle 120px at var(--cursor-x) var(--cursor-y), black 0%, transparent 100%)',
+              WebkitMaskImage: 'radial-gradient(circle 120px at var(--cursor-x) var(--cursor-y), black 0%, transparent 100%)',
             }}
           >
-            <span className="block text-accent-orange drop-shadow-[0_0_60px_rgba(255,159,67,1)] font-black">
+            <span className="block text-accent-orange drop-shadow-[0_0_50px_rgba(255,159,67,1)] font-black">
               SHAKER
             </span>
-            <span className="block text-white italic font-black tracking-widest relative drop-shadow-[0_0_40px_rgba(255,255,255,0.6)]">
+            <span className="block text-white italic font-black tracking-widest relative drop-shadow-[0_0_30px_rgba(255,255,255,0.7)]">
               ABDALLAH
-              <span className="absolute -bottom-6 left-0 w-full h-px bg-white shadow-[0_0_20px_rgba(255,255,255,1)]" />
+              <span className="absolute -bottom-6 left-0 w-full h-[1.5px] bg-white shadow-[0_0_20px_rgba(255,255,255,1)]" />
             </span>
-          </div>
-
-          {/* Elite Flourishes */}
-          <div className="absolute inset-0 pointer-events-none opacity-60">
-            <div className="absolute top-0 left-0 w-12 h-12 border-t-2 border-l-2 border-accent-cyan/30 translate-x-[-60px] translate-y-[-40px]" />
-            <div className="absolute bottom-0 right-0 w-12 h-12 border-b-2 border-r-2 border-accent-pink/30 translate-x-[60px] translate-y-[40px]" />
           </div>
         </motion.h1>
 

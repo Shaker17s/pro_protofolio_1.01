@@ -24,41 +24,32 @@ const CyberMesh: React.FC = () => {
   }, []);
 
   return (
-    <div className="fixed inset-0 -z-30 pointer-events-none overflow-hidden bg-black">
-      <motion.div
+    <div className="fixed inset-0 -z-30 pointer-events-none overflow-hidden touch-none">
+      <div
         ref={containerRef}
-        style={{ rotateX, translateZ, perspective: '1000px' }}
-        className="absolute inset-x-[-50%] inset-y-[-50%] w-[200%] h-[200%] origin-center"
-      >
-        {/* Dynamic Grid */}
-        <div 
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `
-              linear-gradient(to right, rgba(255, 159, 67, 0.05) 1px, transparent 1px),
-              linear-gradient(to bottom, rgba(255, 159, 67, 0.05) 1px, transparent 1px)
-            `,
-            backgroundSize: '60px 60px',
-            maskImage: 'radial-gradient(circle 800px at var(--mouse-x, 50%) var(--mouse-y, 50%), black 0%, transparent 100%)',
-            WebkitMaskImage: 'radial-gradient(circle 800px at var(--mouse-x, 50%) var(--mouse-y, 50%), black 0%, transparent 100%)'
-          }}
-        />
-
-        {/* Highlight Pulse */}
-        <div 
-          className="absolute inset-0 opacity-20"
-          style={{
-            backgroundImage: `
-              linear-gradient(to right, rgba(0, 240, 255, 0.1) 1px, transparent 1px),
-              linear-gradient(to bottom, rgba(0, 240, 255, 0.1) 1px, transparent 1px)
-            `,
-            backgroundSize: '120px 120px',
-          }}
-        />
-      </motion.div>
+        className="absolute inset-x-[-20%] inset-y-[-20%] w-[140%] h-[140%] origin-center opacity-40"
+        style={{
+          backgroundImage: `
+            linear-gradient(to right, rgba(255, 159, 67, 0.05) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(255, 159, 67, 0.05) 1px, transparent 1px)
+          `,
+          backgroundSize: '100px 100px',
+          maskImage: 'radial-gradient(circle 800px at var(--mouse-x, 50%) var(--mouse-y, 50%), black 0%, transparent 100%)',
+          WebkitMaskImage: 'radial-gradient(circle 800px at var(--mouse-x, 50%) var(--mouse-y, 50%), black 0%, transparent 100%)'
+        }}
+      />
       
-      {/* Decorative Vignette */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_0%,_black_90%)]" />
+      {/* Static grid for background depth */}
+      <div 
+        className="absolute inset-0 opacity-[0.03]"
+        style={{
+          backgroundImage: `
+            linear-gradient(to right, rgba(0, 240, 255, 0.1) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(0, 240, 255, 0.1) 1px, transparent 1px)
+          `,
+          backgroundSize: '200px 200px',
+        }}
+      />
     </div>
   );
 };

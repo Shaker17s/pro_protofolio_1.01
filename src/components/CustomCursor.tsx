@@ -21,12 +21,26 @@ const CursorLens: React.FC = () => {
   const lensHeight = useSpring(44, springConfig);
   const lensRadius = useSpring(22, springConfig);
 
+  // Synchronize CSS masking variables with the spring position
+  useEffect(() => {
+    const unsubscribeX = lensX.on('change', (v) => {
+      document.documentElement.style.setProperty('--cursor-x', `${v}px`);
+    });
+    const unsubscribeY = lensY.on('change', (v) => {
+      document.documentElement.style.setProperty('--cursor-y', `${v}px`);
+    });
+    return () => {
+      unsubscribeX();
+      unsubscribeY();
+    };
+  }, [lensX, lensY]);
+
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
-      
-      // Update global CSS variables for masking
+
+      // IMMEDIATE MASKING UPDATE (No spring lag)
       document.documentElement.style.setProperty('--cursor-x', `${e.clientX}px`);
       document.documentElement.style.setProperty('--cursor-y', `${e.clientY}px`);
 
@@ -51,16 +65,16 @@ const CursorLens: React.FC = () => {
         
         targetX.set(rect.left + rect.width / 2);
         targetY.set(rect.top + rect.height / 2);
-        lensWidth.set(rect.width + 20);
-        lensHeight.set(rect.height + 20);
-        lensRadius.set(16);
+        lensWidth.set(rect.width + 16);
+        lensHeight.set(rect.height + 16);
+        lensRadius.set(12);
 
         if (interactive.classList.contains('magnetic')) {
             const centerX = rect.left + rect.width / 2;
             const centerY = rect.top + rect.height / 2;
             gsap.to(interactive, {
-              x: (e.clientX - centerX) * 0.35,
-              y: (e.clientY - centerY) * 0.35,
+              x: (e.clientX - centerX) * 0.3,
+              y: (e.clientY - centerY) * 0.3,
               duration: 0.4,
               ease: "power3.out"
             });
@@ -69,23 +83,23 @@ const CursorLens: React.FC = () => {
         setHoverType('hero');
         targetX.set(mouseX.get());
         targetY.set(mouseY.get());
-        lensWidth.set(150);
-        lensHeight.set(150);
-        lensRadius.set(75);
+        lensWidth.set(80); // Capped size for better precision
+        lensHeight.set(80);
+        lensRadius.set(40);
       } else if (textElement) {
         setHoverType('text');
         targetX.set(mouseX.get());
         targetY.set(mouseY.get());
-        lensWidth.set(100);
-        lensHeight.set(100);
-        lensRadius.set(50);
+        lensWidth.set(60);
+        lensHeight.set(60);
+        lensRadius.set(30);
       } else {
         setHoverType('normal');
         targetX.set(mouseX.get());
         targetY.set(mouseY.get());
-        lensWidth.set(44);
-        lensHeight.set(44);
-        lensRadius.set(22);
+        lensWidth.set(32);
+        lensHeight.set(32);
+        lensRadius.set(16);
       }
     };
 
