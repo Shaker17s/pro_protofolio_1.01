@@ -12,6 +12,7 @@ import GlobalFilters from './components/GlobalFilters';
 import NeuralNetwork from './components/NeuralNetwork';
 import Preloader from './components/Preloader';
 import FloatingShapes from './components/FloatingShapes';
+import GlobalBackground from './components/GlobalBackground';
 
 function App() {
   const [isTerminalMode, setIsTerminalMode] = useState(false);
@@ -30,15 +31,16 @@ function App() {
   return (
     <main id="top" className="relative min-h-screen bg-black overflow-x-hidden selection:bg-accent-purple/30 scroll-smooth">
       <GlobalFilters />
+      <GlobalBackground />
+      <CursorLens />
+      
       <div className="fixed inset-0 bg-black -z-50" />
-      <div className="fixed inset-0 bg-[radial-gradient(circle_at_center,_rgba(112,0,255,0.03)_0%,_transparent_70%)] pointer-events-none -z-40" />
       
       <AnimatePresence>
         {isLoading && <Preloader onComplete={() => setIsLoading(false)} />}
       </AnimatePresence>
       <FloatingShapes />
       <Navbar />
-      <CursorLens />
       <ParticleMesh />
       <NeuralNetwork />
 

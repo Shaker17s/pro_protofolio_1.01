@@ -67,6 +67,26 @@
     @apply opacity-100;
   }
 
+  /* Global Masking Reveal */
+  .lens-reveal {
+    position: relative;
+  }
+
+  .lens-reveal::after {
+    content: attr(data-text);
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    mask-image: radial-gradient(circle 140px at var(--cursor-x) var(--cursor-y), black 0%, transparent 100%);
+    -webkit-mask-image: radial-gradient(circle 140px at var(--cursor-x) var(--cursor-y), black 0%, transparent 100%);
+    transition: none;
+  }
+
+  .lens-reveal-orange::after { @apply text-accent-orange; }
+  .lens-reveal-purple::after { @apply text-accent-purple; }
+  .lens-reveal-cyan::after { @apply text-accent-cyan; }
+  .lens-reveal-white::after { @apply text-white; }
+
   .magnetic-btn {
     @apply cursor-none rounded-[1rem] border border-white/10 bg-white/5 backdrop-blur-3xl text-white transition-all duration-500 relative overflow-hidden;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2), inset 0 0 2px rgba(255, 255, 255, 0.1);

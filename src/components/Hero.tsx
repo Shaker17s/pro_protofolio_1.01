@@ -84,58 +84,10 @@ const Hero: React.FC = () => {
   }, [quotes.length]);
 
   return (
-    <section className="relative min-h-[86vh] flex flex-col items-center justify-center text-center px-4 perspective-2500 overflow-hidden">
+    <section className="relative min-h-screen pt-32 flex flex-col items-center justify-center text-center px-4 perspective-2500 overflow-hidden">
       {/* Background Decor */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(0,240,255,0.12),_transparent_35%),linear-gradient(180deg,rgba(255,255,255,0.04),transparent_50%)] pointer-events-none" />
-      <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-[36rem] h-[36rem] rounded-full bg-accent-pink/10 blur-3xl opacity-70 pointer-events-none" />
-      <div className="absolute top-8 left-8 hidden sm:flex items-center gap-3 glass-artifact px-4 py-2 uppercase tracking-[0.3em] text-[10px] text-white/60 shadow-[0_30px_90px_rgba(0,0,0,0.25)]">
-        <span className="text-accent-orange">SYSTEM ID</span>
-        <span className="font-semibold text-white">S_ABDALLAH</span>
-      </div>
-
-      <motion.div
-        style={{ opacity: textOpacity }}
-        className="relative z-10 max-w-5xl"
-      >
-        <div className="absolute top-8 right-8 hidden sm:flex items-center gap-2 glass-artifact px-4 py-2 uppercase tracking-[0.3em] text-[10px] text-white/70 shadow-[0_30px_90px_rgba(0,0,0,0.25)]">
-          <span className="inline-flex h-2 w-2 rounded-full bg-accent-cyan animate-pulse" />
-          NOW OPEN FOR ELITE ROLES
-        </div>
-
-        <div className="inline-flex items-center gap-3 px-4 py-2 glass-artifact mb-8 hover:border-accent-cyan/50 transition-colors group cursor-none">
-          <Zap size={14} className="text-accent-cyan animate-pulse" />
-          <span className="text-[10px] font-mono tracking-[0.4em] text-white/50 group-hover:text-white transition-colors uppercase">System Link: Active</span>
-        </div>
-
-        <motion.h1
-          ref={nameRef}
-          onClick={handleNameClick}
-          style={{ fontWeight }}
-          className={`relative text-6xl md:text-[10rem] font-display tracking-[-0.04em] leading-[0.8] mb-12 cursor-none select-none transition-all duration-300 ${glitchActive ? 'animate-glitch' : ''}`}
-        >
-          {/* Advanced SVG Path Tracing Decor */}
-          <div className="absolute inset-0 -z-10 overflow-visible pointer-events-none">
-            <svg width="100%" height="100%" viewBox="0 0 800 300" className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-125 md:scale-[2.2]">
-              <motion.path
-                d="M 50 150 Q 150 50 400 150 T 750 150"
-                fill="none"
-                stroke="rgba(255, 159, 67, 0.4)"
-                strokeWidth="0.5"
-                initial={{ pathLength: 0, opacity: 0 }}
-                animate={{ pathLength: 1, opacity: 1 }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              />
-              <motion.path
-                d="M 100 200 Q 250 150 400 200 T 700 200"
-                fill="none"
-                stroke="rgba(112, 0, 255, 0.3)"
-                strokeWidth="0.5"
-                initial={{ pathLength: 0, opacity: 0 }}
-                animate={{ pathLength: 1, opacity: 0.6 }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-              />
-            </svg>
-          </div>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(0,240,255,0.08),_transparent_40%)] pointer-events-none" />
+      <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-[36rem] h-[36rem] rounded-full bg-accent-pink/5 blur-3xl opacity-50 pointer-events-none" />
 
           {/* Base Layer (Dimmed) */}
           <div className="relative z-10 flex flex-col items-center">

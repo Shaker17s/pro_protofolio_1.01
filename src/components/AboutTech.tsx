@@ -33,7 +33,7 @@ const AboutTech: React.FC = () => {
           <div className="inline-block px-4 py-1.5 glass-artifact text-[9px] font-mono tracking-[0.4em] text-accent-orange uppercase mb-8 rounded-full">
             Engineering Stack
           </div>
-          <h2 className="text-5xl md:text-8xl font-heading font-black tracking-tighter leading-[0.85] mb-10">
+          <h2 className="text-5xl md:text-8xl font-heading font-black tracking-tighter leading-[0.85] mb-10 lens-reveal lens-reveal-cyan" data-text="SKILLS FOR IMPACT.">
             SKILLS <br />
             <span className="text-accent-purple italic font-light">FOR IMPACT.</span>
           </h2>

@@ -112,7 +112,7 @@ const Projects: React.FC = () => {
           <div className="inline-block px-4 py-1.5 glass-artifact text-[9px] font-mono tracking-[0.4em] text-accent-cyan uppercase mb-6 rounded-full">
             Data Repository
           </div>
-          <h2 className="text-5xl md:text-[8rem] font-heading font-black tracking-tighter leading-[0.85]">
+          <h2 className="text-5xl md:text-[8rem] font-heading font-black tracking-tighter leading-[0.85] lens-reveal lens-reveal-purple" data-text="SELECTED ARTIFACTS.">
             SELECTED <br />
             <span className="text-accent-purple italic font-light">ARTIFACTS.</span>
           </h2>
