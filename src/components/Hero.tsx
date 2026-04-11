@@ -140,7 +140,15 @@ const Hero: React.FC = () => {
               <span className="absolute -bottom-6 left-0 w-full h-[1.5px] bg-white/10" />
             </span>
           </div>
-
+          {/* Highlight Layer (Masked - Sync'd via Raw Mouse) */}
+          <div 
+            className="fixed inset-0 z-20 pointer-events-none flex flex-col items-center justify-center select-none"
+            style={{
+              maskImage: 'radial-gradient(circle 120px at var(--cursor-x) var(--cursor-y), black 0%, transparent 100%)',
+              WebkitMaskImage: 'radial-gradient(circle 120px at var(--cursor-x) var(--cursor-y), black 0%, transparent 100%)',
+            }}
+          >
+            <div className="flex flex-col items-center">
               <span className="block text-accent-orange drop-shadow-[0_0_50px_rgba(255,159,67,1)] font-black uppercase text-7xl md:text-[11rem] tracking-[-0.06em] leading-[0.8]">
                 SHAKER
               </span>
