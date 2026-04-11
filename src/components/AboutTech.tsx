@@ -50,10 +50,10 @@ const AboutTech: React.FC = () => {
 
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 relative">
           {/* Connection Lines (DNA) */}
-          <div className="absolute inset-0 pointer-events-none opacity-20 -z-10">
-            <svg width="100%" height="100%" className="blur-[1px]">
-                <line x1="0" y1="0" x2="100%" y2="100%" stroke="rgba(0, 240, 255, 0.3)" strokeWidth="0.5" strokeDasharray="5,5" />
-                <line x1="100%" y1="0" x2="0" y2="100%" stroke="rgba(255, 159, 67, 0.3)" strokeWidth="0.5" strokeDasharray="5,5" />
+          <div className="absolute inset-0 pointer-events-none opacity-25 -z-10">
+            <svg width="100%" height="100%" viewBox="0 0 100 100" className="blur-[1px]">
+              <path d="M 0 0 L 100 100" stroke="rgba(0, 240, 255, 0.3)" strokeWidth="0.6" strokeDasharray="5 5" fill="none" />
+              <path d="M 100 0 L 0 100" stroke="rgba(255, 159, 67, 0.3)" strokeWidth="0.6" strokeDasharray="5 5" fill="none" />
             </svg>
           </div>
 

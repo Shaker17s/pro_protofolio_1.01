@@ -6,20 +6,30 @@
   :root {
     --accent-purple: #7000FF;
     --accent-cyan: #00F0FF;
+    --accent-orange: #FF9F43;
+    --accent-pink: #FF6EC7;
     --artifact-easing: cubic-bezier(0.76, 0, 0.24, 1);
+    --cursor-x: 50vw;
+    --cursor-y: 50vh;
   }
 
   body {
     @apply bg-black text-white font-body cursor-none overflow-x-hidden;
     background: 
       repeating-linear-gradient(
+        0deg,
+        transparent 0px,
+        rgba(184, 134, 11, 0.15) 16px,
+        transparent 32px
+      ),
+      repeating-linear-gradient(
         90deg,
         transparent 0px,
-        rgba(184, 134, 11, 0.18) 20px,
-        transparent 40px
+        rgba(184, 134, 11, 0.12) 16px,
+        transparent 32px
       ),
-      radial-gradient(ellipse at center, rgba(112, 0, 255, 0.05) 0%, rgba(0, 240, 255, 0.03) 50%, rgba(255, 0, 255, 0.02) 100%),
-      #000000;
+      radial-gradient(ellipse at center, rgba(255, 184, 28, 0.06) 0%, rgba(112, 0, 255, 0.05) 28%, rgba(0, 240, 255, 0.03) 56%, transparent 100%),
+      #020306;
   }
 
   /* Immersive Grain */
@@ -92,21 +102,39 @@
   }
 
   .glass-artifact {
-    @apply bg-black/30 backdrop-blur-3xl border border-white/10 relative overflow-hidden;
+    @apply bg-black/25 backdrop-blur-3xl border border-white/10 relative overflow-hidden;
+    background: rgba(7, 12, 22, 0.48);
     box-shadow: 
-      0 12px 40px rgba(0, 0, 0, 0.6), 
-      inset 0 0 0px 1.5px rgba(255, 255, 255, 0.08);
+      0 14px 60px rgba(0, 0, 0, 0.55), 
+      inset 0 0 0px 1px rgba(255, 255, 255, 0.07);
+    backdrop-filter: saturate(180%) blur(24px);
   }
 
   .glass-artifact::after {
     content: '';
     @apply absolute inset-0 opacity-0 transition-opacity duration-1000 pointer-events-none;
-    background: linear-gradient(135deg, transparent 40%, rgba(255, 255, 255, 0.1) 45%, rgba(255, 255, 255, 0.05) 50%, transparent 55%);
-    background-size: 200% 200%;
+    background: radial-gradient(circle at top left, rgba(255,255,255,0.18), transparent 26%),
+                linear-gradient(135deg, transparent 35%, rgba(255,255,255,0.12) 50%, transparent 65%);
+    background-size: 180% 180%, 200% 200%;
+    mix-blend-mode: screen;
   }
 
   .glass-artifact:hover::after {
     @apply opacity-100;
+  }
+
+  .hero-text-hover {
+    transition: color 0.3s ease, filter 0.3s ease, text-shadow 0.3s ease;
+  }
+
+  .magnetic {
+    transition: transform 0.35s var(--artifact-easing), box-shadow 0.35s ease, filter 0.35s ease;
+    will-change: transform;
+  }
+
+  .magnetic:hover {
+    transform: translate3d(0, -2px, 0);
+    filter: saturate(1.2) brightness(1.05);
   }
 
   /* Global Masking Reveal */

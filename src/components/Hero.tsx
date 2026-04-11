@@ -104,7 +104,7 @@ const Hero: React.FC = () => {
       <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-[36rem] h-[36rem] rounded-full bg-accent-pink/5 blur-3xl opacity-50 pointer-events-none" />
 
       <motion.div
-        style={{ opacity: textOpacity }}
+        style={{ opacity: textOpacity, fontWeight }}
         className="relative z-10 max-w-5xl"
       >
         <div className="absolute top-0 right-0 hidden sm:flex items-center gap-4 glass-artifact px-6 py-3 uppercase tracking-[0.4em] text-[10px] text-white/70 shadow-2xl overflow-hidden group">
@@ -146,6 +146,7 @@ const Hero: React.FC = () => {
             style={{
               maskImage: 'radial-gradient(circle 120px at var(--cursor-x) var(--cursor-y), black 0%, transparent 100%)',
               WebkitMaskImage: 'radial-gradient(circle 120px at var(--cursor-x) var(--cursor-y), black 0%, transparent 100%)',
+              mixBlendMode: 'screen',
             }}
           >
             <div className="flex flex-col items-center">
