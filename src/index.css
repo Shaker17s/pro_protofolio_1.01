@@ -50,14 +50,17 @@
   }
 
   .glass-artifact {
-    @apply bg-black/20 backdrop-blur-2xl border border-white/5 relative overflow-hidden;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 0 0px 1px rgba(255, 255, 255, 0.05);
+    @apply bg-black/30 backdrop-blur-3xl border border-white/10 relative overflow-hidden;
+    box-shadow: 
+      0 12px 40px rgba(0, 0, 0, 0.6), 
+      inset 0 0 0px 1.5px rgba(255, 255, 255, 0.08);
   }
 
   .glass-artifact::after {
     content: '';
-    @apply absolute inset-0 opacity-0 transition-opacity duration-700 pointer-events-none;
-    background: linear-gradient(135deg, transparent 45%, rgba(255, 255, 255, 0.05) 50%, transparent 55%);
+    @apply absolute inset-0 opacity-0 transition-opacity duration-1000 pointer-events-none;
+    background: linear-gradient(135deg, transparent 40%, rgba(255, 255, 255, 0.1) 45%, rgba(255, 255, 255, 0.05) 50%, transparent 55%);
+    background-size: 200% 200%;
   }
 
   .glass-artifact:hover::after {

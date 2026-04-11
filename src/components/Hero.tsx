@@ -111,8 +111,32 @@ const Hero: React.FC = () => {
           ref={nameRef}
           onClick={handleNameClick}
           style={{ fontWeight }}
-          className={`relative text-6xl md:text-[9rem] font-display tracking-[-0.04em] leading-[0.85] mb-8 cursor-none select-none transition-all duration-300 ${glitchActive ? 'animate-glitch' : ''}`}
+          className={`relative text-6xl md:text-[10rem] font-display tracking-[-0.04em] leading-[0.8] mb-12 cursor-none select-none transition-all duration-300 ${glitchActive ? 'animate-glitch' : ''}`}
         >
+          {/* Advanced SVG Path Tracing Decor */}
+          <div className="absolute inset-0 -z-10 overflow-visible pointer-events-none">
+            <svg width="100%" height="100%" viewBox="0 0 800 300" className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-125 md:scale-[2.2]">
+              <motion.path
+                d="M 50 150 Q 150 50 400 150 T 750 150"
+                fill="none"
+                stroke="rgba(255, 159, 67, 0.4)"
+                strokeWidth="0.5"
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={{ pathLength: 1, opacity: 1 }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              />
+              <motion.path
+                d="M 100 200 Q 250 150 400 200 T 700 200"
+                fill="none"
+                stroke="rgba(112, 0, 255, 0.3)"
+                strokeWidth="0.5"
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={{ pathLength: 1, opacity: 0.6 }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+              />
+            </svg>
+          </div>
+
           {/* Base Layer (Dimmed) */}
           <div className="relative z-10 flex flex-col items-center">
             <span className="hero-text-hover block text-white/20 transition-all duration-700">
@@ -120,7 +144,7 @@ const Hero: React.FC = () => {
             </span>
             <span className="hero-text-hover block text-white/10 transition-all duration-700 italic font-light tracking-widest relative">
               ABDALLAH
-              <span className="absolute -bottom-2 left-0 w-full h-px bg-white/5" />
+              <span className="absolute -bottom-4 left-0 w-full h-px bg-white/5" />
             </span>
           </div>
 
@@ -128,36 +152,32 @@ const Hero: React.FC = () => {
           <div 
             className="absolute inset-0 z-20 pointer-events-none flex flex-col items-center select-none"
             style={{
-              maskImage: 'radial-gradient(circle 120px at var(--cursor-x) var(--cursor-y), black 0%, transparent 100%)',
-              WebkitMaskImage: 'radial-gradient(circle 120px at var(--cursor-x) var(--cursor-y), black 0%, transparent 100%)',
+              maskImage: 'radial-gradient(circle 140px at var(--cursor-x) var(--cursor-y), black 0%, transparent 100%)',
+              WebkitMaskImage: 'radial-gradient(circle 140px at var(--cursor-x) var(--cursor-y), black 0%, transparent 100%)',
             }}
           >
-            <span className="block text-accent-orange drop-shadow-[0_0_40px_rgba(255,159,67,0.6)]">
-              <span className="inline-block transform -skew-x-12 translate-y-2 border-b-2 border-accent-orange/50 pb-1">S</span>HAKER
+            <span className="block text-accent-orange drop-shadow-[0_0_50px_rgba(255,159,67,0.7)]">
+              <span className="inline-block transform -skew-x-12 translate-y-2 border-b-2 border-accent-orange pb-2">S</span>HAKER
             </span>
-            <span className="block text-accent-purple italic font-light tracking-widest relative">
+            <span className="block text-white italic font-light tracking-widest relative drop-shadow-[0_0_30px_rgba(255,255,255,0.4)]">
               ABDALLAH
-              <span className="absolute -bottom-2 left-0 w-full h-px bg-accent-purple/50 shadow-[0_0_10px_rgba(112,0,255,0.5)]" />
+              <span className="absolute -bottom-4 left-0 w-full h-px bg-white shadow-[0_0_15px_rgba(255,255,255,0.8)]" />
             </span>
           </div>
 
-          {/* Ornate Flourishes */}
-          <div className="absolute inset-0 pointer-events-none opacity-40">
-            <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-accent-cyan/20 translate-x-[-40px] translate-y-[-20px]" />
-            <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-accent-pink/20 translate-x-[40px] translate-y-[20px]" />
-            
-            {/* Extended S stroke */}
-            <div className="absolute top-1/2 left-0 w-[200px] h-[1px] bg-gradient-to-r from-accent-orange/30 to-transparent translate-x-[-220px]" />
-            <div className="absolute top-1/2 right-0 w-[200px] h-[1px] bg-gradient-to-l from-accent-purple/30 to-transparent translate-x-[220px]" />
+          {/* Elite Flourishes */}
+          <div className="absolute inset-0 pointer-events-none opacity-60">
+            <div className="absolute top-0 left-0 w-12 h-12 border-t-2 border-l-2 border-accent-cyan/30 translate-x-[-60px] translate-y-[-40px]" />
+            <div className="absolute bottom-0 right-0 w-12 h-12 border-b-2 border-r-2 border-accent-pink/30 translate-x-[60px] translate-y-[40px]" />
           </div>
         </motion.h1>
 
-        <div className="h-12 flex items-center justify-center gap-6 overflow-hidden mb-12">
-          <div className="w-24 h-[1px] bg-gradient-to-r from-transparent via-accent-cyan/50 to-transparent" />
-          <span className="hero-text-hover role-text cursor-text text-sm md:text-lg font-mono tracking-[0.4em] text-accent-cyan/60 uppercase">
+        <div className="h-16 flex items-center justify-center gap-10 overflow-hidden mb-16">
+          <div className="w-32 h-[1px] bg-gradient-to-r from-transparent via-accent-cyan/40 to-transparent" />
+          <span className="hero-text-hover role-text cursor-text text-base md:text-xl font-mono tracking-[0.5em] text-white/40 uppercase">
             AI PROMPT ENGINEER
           </span>
-          <div className="w-24 h-[1px] bg-gradient-to-l from-transparent via-accent-cyan/50 to-transparent" />
+          <div className="w-32 h-[1px] bg-gradient-to-l from-transparent via-accent-cyan/40 to-transparent" />
         </div>
 
         <div className="max-w-2xl mx-auto text-base md:text-lg leading-8 text-white/50 mb-12">

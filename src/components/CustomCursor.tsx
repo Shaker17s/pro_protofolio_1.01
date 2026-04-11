@@ -152,5 +152,3 @@ const CursorLens: React.FC = () => {
 
 export default CursorLens;
 
-export default CursorLens;
-

@@ -35,14 +35,14 @@ const Navbar: React.FC = () => {
           animate={{ opacity: 1, x: 0 }}
           className="pointer-events-auto"
         >
-          <a href="#top" className="flex items-center gap-3 glass-artifact px-4 py-2 group">
-            <div className="w-2 h-2 rounded-full bg-accent-purple animate-pulse" />
-            <span className="text-[10px] font-mono tracking-[0.5em] uppercase text-white/50 group-hover:text-white transition-colors">S_ABDALLAH.SYS</span>
+          <a href="#top" className="flex items-center gap-4 glass-artifact px-5 py-2.5 group hover:border-accent-orange/40 transition-all duration-500 rounded-full">
+            <div className="w-2.5 h-2.5 rounded-full bg-accent-orange shadow-[0_0_10px_rgba(255,159,67,0.8)] animate-pulse" />
+            <span className="text-[11px] font-mono tracking-[0.5em] font-black uppercase text-white group-hover:text-accent-orange transition-colors">S_ABDALLAH.SYS</span>
           </a>
         </motion.div>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-4 pointer-events-auto">
+        <div className="hidden md:flex items-center gap-6 pointer-events-auto">
           {navItems.map((item, i) => (
             <motion.a
               key={item.name}
@@ -50,10 +50,10 @@ const Navbar: React.FC = () => {
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1 }}
-              className="magnetic glass-artifact px-6 py-2 flex items-center gap-3 group transition-all duration-500 hover:bg-white hover:text-black"
+              className="magnetic glass-artifact px-8 py-3 flex items-center gap-4 group transition-all duration-700 hover:bg-white hover:text-black rounded-full overflow-hidden"
             >
-              <span className="opacity-40 group-hover:opacity-100 transition-opacity">{item.icon}</span>
-              <span className="text-[10px] font-mono tracking-[0.3em] uppercase group-hover:font-black">{item.name}</span>
+              <span className="text-accent-cyan group-hover:text-black transition-colors">{item.icon}</span>
+              <span className="text-[10px] font-mono tracking-[0.4em] uppercase font-bold group-hover:font-black">{item.name}</span>
             </motion.a>
           ))}
         </div>

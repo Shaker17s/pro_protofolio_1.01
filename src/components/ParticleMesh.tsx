@@ -43,7 +43,7 @@ const ParticleMesh: React.FC = () => {
       }
 
       update() {
-        this.z -= 0.1; // Hypnotically slow ambient movement
+        this.z -= 0.1; 
         if (this.z <= 1) this.z = 2000;
 
         const factor = 1000 / this.z;
@@ -54,14 +54,19 @@ const ParticleMesh: React.FC = () => {
         const dy = sy - mouse.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
         
-        if (dist < 300) {
-          const force = (300 - dist) / 300;
-          this.x += mouse.vx * force * 1.5;
-          this.y += mouse.vy * force * 1.5;
+        if (dist < 400) {
+          const force = (400 - dist) / 400;
+          this.x += mouse.vx * force * 2.0;
+          this.y += mouse.vy * force * 2.0;
         }
 
-        this.x += (this.baseX - this.x) * 0.02;
-        this.y += (this.baseY - this.y) * 0.02;
+        // Liquid Drift & Swarm logic
+        const time = Date.now() * 0.001;
+        this.x += Math.sin(time + this.z) * 0.2;
+        this.y += Math.cos(time + this.z) * 0.2;
+
+        this.x += (this.baseX - this.x) * 0.015;
+        this.y += (this.baseY - this.y) * 0.015;
       }
 
       draw() {
